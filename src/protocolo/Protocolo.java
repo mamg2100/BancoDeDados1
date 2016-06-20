@@ -6,6 +6,8 @@
 
 package protocolo;
 
+import view.JFramePrincipal;
+
 /**
  *
  * @author Marco Antonio
@@ -16,7 +18,11 @@ public class Protocolo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+      // TODO code application logic here
+        
+        JFramePrincipal principal = new JFramePrincipal();
+        principal.setVisible(true);
     }
     
 }
