@@ -39,7 +39,7 @@ public class ConnectionDB {
     public ConnectionDB() {
     }
 
-    public void conectar() {
+    public void conexao() {
         try {
             System.setProperty("jdbc.Drivers", driver);
             conn = DriverManager.getConnection(caminho, usuario, senha);
@@ -49,9 +49,16 @@ public class ConnectionDB {
         }
     }
     
-    //public void executaSQL(String s){
+    public void executaSQL(String sql){
+        
+        try {
+            stm = conn.createStatement(rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+            rs = stm.executeQuery(sql);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro de Método executaSQL\n Erro" + ex.getMessage());
+        }       
     
-    //}    
+    }    
     
     public void desconectar(){
     

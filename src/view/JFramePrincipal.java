@@ -28,7 +28,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
      */
     public JFramePrincipal() {
         initComponents();
-        conexao.conectar();// 
+        conexao.conexao();// 
         
         // conecta.conexao();
         
@@ -152,6 +152,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItemDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemDespesaActionPerformed

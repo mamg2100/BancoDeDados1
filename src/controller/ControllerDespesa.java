@@ -18,14 +18,14 @@ import model.ModelDespesa;
  */
 public class ControllerDespesa {
 
-    ConnectionDB connDespesa = new ConnectionDB();
+    ConnectionDB conecta = new ConnectionDB();
 
     public void InserirDespesa(ModelDespesa despesa) {
 
-        connDespesa.conectar();
+        conecta.conexao();
         
         try {
-            PreparedStatement pst = connDespesa.conn.prepareStatement("INSERT INTO dotacao (Despesa,Reduzida,Programa,Acao)VALUES(?,?,?,?)");
+            PreparedStatement pst = conecta.conn.prepareStatement("INSERT INTO dotacao (Despesa,Reduzida,Programa,Acao)VALUES(?,?,?,?)");
             pst.setString(1, despesa.getDespesa());
             pst.setString(2, despesa.getReduzida());
             pst.setString(3, despesa.getPrograma());
@@ -38,16 +38,16 @@ public class ControllerDespesa {
             JOptionPane.showMessageDialog(null,"Erro na inserção dos dados: " + ex);
         }
 
-        connDespesa.desconectar();
+        conecta.desconectar();
 
     }
 
     public void ExcluirDespesa(ModelDespesa despesa) {
 
-       connDespesa.conectar();
+       conecta.conexao();
 
         try {
-            PreparedStatement pst = connDespesa.conn.prepareStatement("delete from dotacao where Cod_Despesa=?");
+            PreparedStatement pst = conecta.conn.prepareStatement("delete from dotacao where Cod_Despesa=?");
             pst.setInt(1, (despesa.getCodDespesa()));
             pst.execute();
             JOptionPane.showMessageDialog(null, "Despesa de codigo: " + despesa.getCodDespesa()+ " excluída com sucesso!");
@@ -55,14 +55,14 @@ public class ControllerDespesa {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Dados não excluídos!"+ex);
         }
-       connDespesa.desconectar();
+       conecta.desconectar();
     }
     
     public void AlterarDespesa (ModelDespesa despesa){
     
         try {
-            connDespesa.conectar();
-            PreparedStatement pst = connDespesa.conn.prepareStatement("update dotacao set Despesa=?,Reduzida=?,Programa=?,Acao=? where Cod_Despesa=? ");
+            conecta.conexao();
+            PreparedStatement pst = conecta.conn.prepareStatement("update dotacao set Despesa=?,Reduzida=?,Programa=?,Acao=? where Cod_Despesa=? ");
             pst.setString(1, despesa.getDespesa());
             pst.setString(2, despesa.getReduzida());
             pst.setString(3, despesa.getPrograma());
