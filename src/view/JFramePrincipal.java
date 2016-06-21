@@ -26,7 +26,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
     /**
      * Creates new form JFramePrincipal
      */
-    public JFramePrincipal() {
+    
+  public JFramePrincipal() {
         initComponents();
         conexao.conexao();// 
         
@@ -50,7 +51,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         menuRim = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         menuCadastro = new javax.swing.JMenu();
+        menuItemUsuario = new javax.swing.JMenuItem();
+        menuItemFornecedor = new javax.swing.JMenuItem();
+        menuItemUnidade = new javax.swing.JMenuItem();
         menuItemDespesa = new javax.swing.JMenuItem();
+        menuItemVeiculo = new javax.swing.JMenuItem();
         menuConsultas = new javax.swing.JMenu();
         menuDados = new javax.swing.JMenu();
         menuUtilitarios = new javax.swing.JMenu();
@@ -93,6 +98,25 @@ public class JFramePrincipal extends javax.swing.JFrame {
         menuCadastro.setText("Cadastro");
         menuCadastro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        menuItemUsuario.setText("Usuário");
+        menuItemUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemUsuarioActionPerformed(evt);
+            }
+        });
+        menuCadastro.add(menuItemUsuario);
+
+        menuItemFornecedor.setText("Fornecedor");
+        menuCadastro.add(menuItemFornecedor);
+
+        menuItemUnidade.setText("Unidade");
+        menuItemUnidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemUnidadeActionPerformed(evt);
+            }
+        });
+        menuCadastro.add(menuItemUnidade);
+
         menuItemDespesa.setText("Despesa");
         menuItemDespesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +124,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         menuCadastro.add(menuItemDespesa);
+
+        menuItemVeiculo.setText("Veículo");
+        menuCadastro.add(menuItemVeiculo);
 
         jMenuBar1.add(menuCadastro);
 
@@ -198,6 +225,18 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formWindowOpened
 
+    private void menuItemUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemUsuarioActionPerformed
+        // TODO add your handling code here:
+        JFrameUsuario formusuario = new JFrameUsuario();
+        formusuario.setVisible(true);
+    }//GEN-LAST:event_menuItemUsuarioActionPerformed
+
+    private void menuItemUnidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemUnidadeActionPerformed
+        // TODO add your handling code here:
+        JFrameUnidade formunidade = new JFrameUnidade();
+        formunidade.setVisible(true);
+    }//GEN-LAST:event_menuItemUnidadeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -224,7 +263,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(JFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
+              
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -246,6 +286,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu menuConsultas;
     private javax.swing.JMenu menuDados;
     private javax.swing.JMenuItem menuItemDespesa;
+    private javax.swing.JMenuItem menuItemFornecedor;
+    private javax.swing.JMenuItem menuItemUnidade;
+    private javax.swing.JMenuItem menuItemUsuario;
+    private javax.swing.JMenuItem menuItemVeiculo;
     private javax.swing.JMenu menuRelatorios;
     private javax.swing.JMenu menuRim;
     private javax.swing.JMenu menuUtilitarios;

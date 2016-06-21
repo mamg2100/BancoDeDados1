@@ -43,7 +43,7 @@ public class ConnectionDB {
         try {
             System.setProperty("jdbc.Drivers", driver);
             conn = DriverManager.getConnection(caminho, usuario, senha);
-            JOptionPane.showMessageDialog(null, "Conectado com o BD");
+            //JOptionPane.showMessageDialog(null, "Conectado com o BD");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro de Conexão com o BD +\n Erro" + ex.getMessage());
         }

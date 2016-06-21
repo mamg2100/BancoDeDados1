@@ -19,10 +19,11 @@ public class Protocolo {
      */
     public static void main(String[] args) {
         
-      // TODO code application logic here
-        
+      // TODO code application logic here        
         JFramePrincipal principal = new JFramePrincipal();
-        principal.setVisible(true);
+        principal.setVisible(true);  
+               
     }
+    
     
 }
