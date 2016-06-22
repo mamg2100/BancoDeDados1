@@ -71,12 +71,9 @@ public class JFrameDespesa extends javax.swing.JFrame {
         buttonOK = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
         buttonSair = new javax.swing.JButton();
-        buttonFirst = new javax.swing.JButton();
-        buttonPrevious = new javax.swing.JButton();
-        buttonNext = new javax.swing.JButton();
-        buttonLast = new javax.swing.JButton();
         buttonExcluir = new javax.swing.JButton();
         buttonAlterar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,6 +90,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Despesas");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTableDespesa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,202 +106,131 @@ public class JFrameDespesa extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTableDespesa);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label1.setText("Código");
+        jPanel1.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
 
         txtCodigo.setEnabled(false);
+        jPanel1.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 72, -1));
 
         label2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label2.setText("Desdobrada");
+        jPanel1.add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
 
         txtDespesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDespesaActionPerformed(evt);
             }
         });
+        jPanel1.add(txtDespesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 72, -1));
 
         label3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label3.setText("Reduzida");
+        jPanel1.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, -1, -1));
+        jPanel1.add(txtReduzida, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 72, -1));
 
         label4.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label4.setText("Programa");
+        jPanel1.add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
+        jPanel1.add(txtPrograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 155, -1));
 
         label5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label5.setText("Cod. Aplicação");
+        jPanel1.add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+        jPanel1.add(txtAplicacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 155, -1));
 
         rbNovo.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         rbNovo.setText("Novo");
+        rbNovo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbNovoMouseClicked(evt);
+            }
+        });
         rbNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbNovoActionPerformed(evt);
             }
         });
+        jPanel1.add(rbNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 68, 41));
 
         rbAlterar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         rbAlterar.setText("Alterar");
+        rbAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbAlterarMouseClicked(evt);
+            }
+        });
+        rbAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbAlterarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 68, 41));
 
         rbExcluir.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         rbExcluir.setText("Excluir");
+        rbExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbExcluirMouseClicked(evt);
+            }
+        });
+        rbExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbExcluirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, 41));
 
         buttonOK.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         buttonOK.setText("OK");
+        buttonOK.setEnabled(false);
         buttonOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonOKActionPerformed(evt);
             }
         });
+        jPanel1.add(buttonOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 84, -1));
 
         buttonCancelar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         buttonCancelar.setText("Cancelar");
+        buttonCancelar.setEnabled(false);
+        buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buttonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 90, -1));
 
         buttonSair.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         buttonSair.setText("Sair");
-
-        buttonFirst.addActionListener(new java.awt.event.ActionListener() {
+        buttonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonFirstActionPerformed(evt);
+                buttonSairActionPerformed(evt);
             }
         });
+        jPanel1.add(buttonSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 80, -1));
 
         buttonExcluir.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         buttonExcluir.setText("Excluir");
+        buttonExcluir.setEnabled(false);
         buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonExcluirActionPerformed(evt);
             }
         });
+        jPanel1.add(buttonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 84, -1));
 
         buttonAlterar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         buttonAlterar.setText("Alterar");
+        buttonAlterar.setEnabled(false);
         buttonAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAlterarActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtReduzida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txtPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtAplicacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(29, 29, 29)
-                .addComponent(buttonFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonPrevious)
-                .addGap(4, 4, 4)
-                .addComponent(buttonNext, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rbAlterar)
-                            .addComponent(rbNovo)
-                            .addComponent(rbExcluir)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonLast, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(buttonCancelar)
-                    .addComponent(buttonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonSair))
-                .addGap(46, 46, 46))
-        );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {buttonCancelar, buttonSair});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rbAlterar, rbExcluir, rbNovo});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtCodigo, txtDespesa, txtReduzida});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {buttonFirst, buttonLast, buttonNext, buttonPrevious});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {buttonExcluir, buttonOK});
-
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(buttonNext))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(buttonFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonPrevious)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(5, 5, 5)
-                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDespesa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtReduzida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 8, Short.MAX_VALUE)
-                                .addComponent(txtPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(txtAplicacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(rbNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rbAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(buttonOK)
-                                .addComponent(buttonAlterar)
-                                .addGap(0, 0, 0)
-                                .addComponent(buttonExcluir)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(buttonLast)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(buttonCancelar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addGap(30, 30, 30))
-        );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {buttonCancelar, buttonSair});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {buttonFirst, buttonLast, buttonNext, buttonPrevious});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {buttonExcluir, buttonOK});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {rbAlterar, rbExcluir, rbNovo});
+        jPanel1.add(buttonAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 84, -1));
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -322,29 +249,18 @@ public class JFrameDespesa extends javax.swing.JFrame {
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 39, -1, 457));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("DESPESAS");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 12, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -354,7 +270,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
 
         // foi tornado global para não ter que declarar novamente
         // ModelDespesa despesa = new ModelDespesa();
-        despesa.setCodDespesa(Integer.valueOf(txtCodigo.getText()));
+        //despesa.setCodDespesa(Integer.valueOf(txtCodigo.getText()));
         despesa.setDespesa(txtDespesa.getText());
         despesa.setReduzida(txtReduzida.getText());
         despesa.setPrograma(txtPrograma.getText());
@@ -365,28 +281,13 @@ public class JFrameDespesa extends javax.swing.JFrame {
 
     private void rbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNovoActionPerformed
         // TODO add your handling code here:
+        desabilitaRbButtons();
     }//GEN-LAST:event_rbNovoActionPerformed
 
     private void txtDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDespesaActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtDespesaActionPerformed
-
-    private void buttonFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFirstActionPerformed
-
-        /*
-         try {
-         conectaDesp.executaSQL("Select * from dotacao order by Cod_despesa");
-         conectaDesp.rs.first();
-         txtDespesa.setText(conectaDesp.rs.getString("Despesa"));
-         txtReduzida.setText(conectaDesp.rs.getString("Reduzida"));
-         txtPrograma.setText(conectaDesp.rs.getString("Programa"));
-         txtAplicacao.setText(conectaDesp.rs.getString("Acao"));
-
-         } catch (SQLException ex) {
-         JOptionPane.showMessageDialog(rootPane, "Erro ao setar o registro" + ex);
-         }
-         */
-    }//GEN-LAST:event_buttonFirstActionPerformed
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
 
@@ -413,13 +314,60 @@ public class JFrameDespesa extends javax.swing.JFrame {
 
     }//GEN-LAST:event_buttonAlterarActionPerformed
 
+    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
+        // TODO add your handling code here:
+        habilitaRbButtons();
+
+    }//GEN-LAST:event_buttonCancelarActionPerformed
+
+    private void rbNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbNovoMouseClicked
+        // TODO add your handling code here:
+        rbExcluir.setSelected(false);
+        rbAlterar.setSelected(false);
+        buttonOK.setEnabled(true);
+        buttonCancelar.setEnabled(true);
+    }//GEN-LAST:event_rbNovoMouseClicked
+
+    private void rbExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbExcluirMouseClicked
+        // TODO add your handling code here:
+        //desabilitaDemaisRbButtons();
+        rbNovo.setSelected(false);
+        rbAlterar.setSelected(false);
+        buttonOK.setEnabled(true);
+        buttonCancelar.setEnabled(true);
+    }//GEN-LAST:event_rbExcluirMouseClicked
+
+    private void rbAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbAlterarMouseClicked
+        // TODO add your handling code here:
+        //desabilitaDemaisRbButtons();
+        rbExcluir.setSelected(false);
+        rbNovo.setSelected(false);
+        buttonOK.setEnabled(true);
+        buttonCancelar.setEnabled(true);
+    }//GEN-LAST:event_rbAlterarMouseClicked
+
+    private void rbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbExcluirActionPerformed
+        // TODO add your handling code here:
+        desabilitaRbButtons();
+    }//GEN-LAST:event_rbExcluirActionPerformed
+
+    private void rbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAlterarActionPerformed
+        // TODO add your handling code here:
+        desabilitaRbButtons();
+    }//GEN-LAST:event_rbAlterarActionPerformed
+
+    private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_buttonSairActionPerformed
+
     public void preencherTabela(String SQL) {
 
         ArrayList dados = new ArrayList();
         String[] colunas = new String[]{"Código", "Despesa", "Reduzida", "Programa", "Cod.Aplicacão"};
 
         conecta.executaSQL(SQL);
-        
+
         try {
             conecta.rs.first();
             do {
@@ -486,12 +434,9 @@ public class JFrameDespesa extends javax.swing.JFrame {
     private javax.swing.JButton buttonAlterar;
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonExcluir;
-    private javax.swing.JButton buttonFirst;
-    private javax.swing.JButton buttonLast;
-    private javax.swing.JButton buttonNext;
     private javax.swing.JButton buttonOK;
-    private javax.swing.JButton buttonPrevious;
     private javax.swing.JButton buttonSair;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -512,4 +457,21 @@ public class JFrameDespesa extends javax.swing.JFrame {
     private java.awt.TextField txtPrograma;
     private java.awt.TextField txtReduzida;
     // End of variables declaration//GEN-END:variables
+
+    private void desabilitaRbButtons() {
+
+        rbNovo.setEnabled(false);
+        rbExcluir.setEnabled(false);
+        rbAlterar.setEnabled(false);
+
+    }
+
+    private void habilitaRbButtons() {
+
+        rbNovo.setEnabled(true);
+        rbExcluir.setEnabled(true);
+        rbAlterar.setEnabled(true);
+
+    }
+
 }
