@@ -73,6 +73,18 @@ public class JFrameDespesa extends javax.swing.JFrame {
         buttonSair = new javax.swing.JButton();
         buttonExcluir = new javax.swing.JButton();
         buttonAlterar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        label6 = new java.awt.Label();
+        txtCodigo1 = new java.awt.TextField();
+        label7 = new java.awt.Label();
+        txtDespesa1 = new java.awt.TextField();
+        label8 = new java.awt.Label();
+        txtReduzida1 = new java.awt.TextField();
+        label9 = new java.awt.Label();
+        txtPrograma1 = new java.awt.TextField();
+        label10 = new java.awt.Label();
+        txtAplicacao1 = new java.awt.TextField();
+        buttonPesquisar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -110,36 +122,36 @@ public class JFrameDespesa extends javax.swing.JFrame {
 
         label1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label1.setText("Código");
-        jPanel1.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
+        jPanel1.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 15));
 
         txtCodigo.setEnabled(false);
-        jPanel1.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 72, -1));
+        jPanel1.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 72, -1));
 
         label2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label2.setText("Desdobrada");
-        jPanel1.add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
+        jPanel1.add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, 15));
 
         txtDespesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDespesaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtDespesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 72, -1));
+        jPanel1.add(txtDespesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 72, -1));
 
         label3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label3.setText("Reduzida");
-        jPanel1.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, -1, -1));
-        jPanel1.add(txtReduzida, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 72, -1));
+        jPanel1.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, -1, 15));
+        jPanel1.add(txtReduzida, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 72, -1));
 
         label4.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label4.setText("Programa");
-        jPanel1.add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
-        jPanel1.add(txtPrograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 155, -1));
+        jPanel1.add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 15));
+        jPanel1.add(txtPrograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 160, -1));
 
         label5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label5.setText("Cod. Aplicação");
-        jPanel1.add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
-        jPanel1.add(txtAplicacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 155, -1));
+        jPanel1.add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, 15));
+        jPanel1.add(txtAplicacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 160, -1));
 
         rbNovo.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         rbNovo.setText("Novo");
@@ -153,7 +165,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
                 rbNovoActionPerformed(evt);
             }
         });
-        jPanel1.add(rbNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 68, 41));
+        jPanel1.add(rbNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 68, 41));
 
         rbAlterar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         rbAlterar.setText("Alterar");
@@ -167,7 +179,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
                 rbAlterarActionPerformed(evt);
             }
         });
-        jPanel1.add(rbAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 68, 41));
+        jPanel1.add(rbAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 68, 41));
 
         rbExcluir.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         rbExcluir.setText("Excluir");
@@ -181,7 +193,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
                 rbExcluirActionPerformed(evt);
             }
         });
-        jPanel1.add(rbExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, 41));
+        jPanel1.add(rbExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, 41));
 
         buttonOK.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         buttonOK.setText("OK");
@@ -191,7 +203,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
                 buttonOKActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 84, -1));
+        jPanel1.add(buttonOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 84, -1));
 
         buttonCancelar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         buttonCancelar.setText("Cancelar");
@@ -201,7 +213,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
                 buttonCancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 90, -1));
+        jPanel1.add(buttonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 84, -1));
 
         buttonSair.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         buttonSair.setText("Sair");
@@ -210,7 +222,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
                 buttonSairActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 80, -1));
+        jPanel1.add(buttonSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 84, -1));
 
         buttonExcluir.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         buttonExcluir.setText("Excluir");
@@ -220,7 +232,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
                 buttonExcluirActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 84, -1));
+        jPanel1.add(buttonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 84, -1));
 
         buttonAlterar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         buttonAlterar.setText("Alterar");
@@ -230,7 +242,93 @@ public class JFrameDespesa extends javax.swing.JFrame {
                 buttonAlterarActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 84, -1));
+        jPanel1.add(buttonAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 84, -1));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        label6.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        label6.setText("Código");
+
+        txtCodigo1.setEnabled(false);
+
+        label7.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        label7.setText("Desdobrada");
+
+        txtDespesa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDespesa1ActionPerformed(evt);
+            }
+        });
+
+        label8.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        label8.setText("Reduzida");
+
+        label9.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        label9.setText("Programa");
+
+        label10.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        label10.setText("Cod. Aplicação");
+
+        buttonPesquisar.setText("Pesquisar");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonPesquisar)
+                .addGap(36, 36, 36))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(17, 17, 17)
+                            .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(txtDespesa1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtReduzida1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPrograma1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                        .addComponent(txtAplicacao1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(buttonPesquisar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(5, 5, 5)
+                    .addComponent(txtCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(10, 10, 10)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(5, 5, 5)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtDespesa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtReduzida1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(10, 10, 10)
+                    .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(5, 5, 5)
+                    .addComponent(txtPrograma1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(10, 10, 10)
+                    .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(5, 5, 5)
+                    .addComponent(txtAplicacao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -238,25 +336,27 @@ public class JFrameDespesa extends javax.swing.JFrame {
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
-
-        panel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel1, jScrollPane2});
-
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14))
         );
 
-        getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 39, -1, 457));
+        getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 39, -1, 460));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("DESPESAS");
@@ -361,6 +461,10 @@ public class JFrameDespesa extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_buttonSairActionPerformed
 
+    private void txtDespesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDespesa1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDespesa1ActionPerformed
+
     public void preencherTabela(String SQL) {
 
         ArrayList dados = new ArrayList();
@@ -435,27 +539,39 @@ public class JFrameDespesa extends javax.swing.JFrame {
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonOK;
+    private javax.swing.JButton buttonPesquisar;
     private javax.swing.JButton buttonSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTableDespesa;
     private java.awt.Label label1;
+    private java.awt.Label label10;
     private java.awt.Label label2;
     private java.awt.Label label3;
     private java.awt.Label label4;
     private java.awt.Label label5;
+    private java.awt.Label label6;
+    private java.awt.Label label7;
+    private java.awt.Label label8;
+    private java.awt.Label label9;
     private java.awt.Panel panel1;
     private javax.swing.JRadioButton rbAlterar;
     private javax.swing.JRadioButton rbExcluir;
     private javax.swing.JRadioButton rbNovo;
     private java.awt.TextField txtAplicacao;
+    private java.awt.TextField txtAplicacao1;
     private java.awt.TextField txtCodigo;
+    private java.awt.TextField txtCodigo1;
     private java.awt.TextField txtDespesa;
+    private java.awt.TextField txtDespesa1;
     private java.awt.TextField txtPrograma;
+    private java.awt.TextField txtPrograma1;
     private java.awt.TextField txtReduzida;
+    private java.awt.TextField txtReduzida1;
     // End of variables declaration//GEN-END:variables
 
     private void desabilitaRbButtons() {
