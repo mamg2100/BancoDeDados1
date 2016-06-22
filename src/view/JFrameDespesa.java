@@ -35,7 +35,8 @@ public class JFrameDespesa extends javax.swing.JFrame {
      */
     public JFrameDespesa() {
         initComponents();
-        //conexao.conectar();
+        // desabilitando os campos de texto para edição ao abrir o formulário
+        desabilitaCamposdeTexto();
         conecta.conexao();
         preencherTabela("select * from dotacao order by Cod_Despesa");
     }
@@ -361,7 +362,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 39, 660, 440));
+        getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 39, 670, 440));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("DESPESAS");
@@ -381,17 +382,25 @@ public class JFrameDespesa extends javax.swing.JFrame {
         despesa.setPrograma(txtPrograma.getText());
         despesa.setAplicacao(txtAplicacao.getText());
 
-        des.InserirDespesa(despesa);
+        // Condição que controla qual método vai ser utilizado dependendo do radio button  selecionado.
+        if (rbNovo.isSelected()) {
+            des.InserirDespesa(despesa);
+        } else if (rbExcluir.isSelected()) {
+            des.ExcluirDespesa(despesa);
+        } else {
+            des.AlterarDespesa(despesa);
+        }
     }//GEN-LAST:event_buttonOKActionPerformed
 
     private void rbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNovoActionPerformed
         // TODO add your handling code here:
         desabilitaRbButtons();
+        habilitaCamposdeTexto();
     }//GEN-LAST:event_rbNovoActionPerformed
 
     private void txtDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDespesaActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtDespesaActionPerformed
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
@@ -453,12 +462,16 @@ public class JFrameDespesa extends javax.swing.JFrame {
 
     private void rbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbExcluirActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Dê duplo clique com o mouse na linha da tabela acima \n correspondente à despesa que você quer excluir");
         desabilitaRbButtons();
+        buttonOK.setEnabled(true);
+        buttonCancelar.setEnabled(true);
     }//GEN-LAST:event_rbExcluirActionPerformed
 
     private void rbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAlterarActionPerformed
         // TODO add your handling code here:
         desabilitaRbButtons();
+        habilitaCamposdeTexto();
     }//GEN-LAST:event_rbAlterarActionPerformed
 
     private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
@@ -483,12 +496,12 @@ public class JFrameDespesa extends javax.swing.JFrame {
             txtReduzida.setText(String.valueOf(conecta.rs.getString("Reduzida")));
             txtPrograma.setText(String.valueOf(conecta.rs.getString("Programa")));
             txtAplicacao.setText(String.valueOf(conecta.rs.getString("Acao")));
-            conecta.desconectar();
-            
+            //conecta.desconectar();
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Erro ao capturar dados da linha selecionada [" + ex);
+            JOptionPane.showMessageDialog(null, "Erro ao capturar dados da linha selecionada [" + ex);
         }
-               
+
     }//GEN-LAST:event_jTableDespesaMouseClicked
 
     public void preencherTabela(String SQL) {
@@ -614,6 +627,22 @@ public class JFrameDespesa extends javax.swing.JFrame {
         rbExcluir.setEnabled(true);
         rbAlterar.setEnabled(true);
 
+    }
+
+    private void desabilitaCamposdeTexto() {
+        txtCodigo.setEnabled(false);
+        txtDespesa.setEnabled(false);
+        txtReduzida.setEnabled(false);
+        txtPrograma.setEnabled(false);
+        txtAplicacao.setEnabled(false);
+    }
+
+    private void habilitaCamposdeTexto() {
+        txtCodigo.setEnabled(true);
+        txtDespesa.setEnabled(true);
+        txtReduzida.setEnabled(true);
+        txtPrograma.setEnabled(true);
+        txtAplicacao.setEnabled(true);
     }
 
 }
