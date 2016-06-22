@@ -55,7 +55,8 @@ public class ControllerDespesa {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Dados não excluídos!"+ex);
         }
-       conecta.desconectar();
+       
+        conecta.desconectar();
     }
     
     public void AlterarDespesa (ModelDespesa despesa){

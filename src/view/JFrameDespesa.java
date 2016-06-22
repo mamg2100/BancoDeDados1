@@ -386,9 +386,19 @@ public class JFrameDespesa extends javax.swing.JFrame {
         if (rbNovo.isSelected()) {
             des.InserirDespesa(despesa);
         } else if (rbExcluir.isSelected()) {
+            if (!"".equals(txtCodigo.getText())){
+            despesa.setCodDespesa(Integer.valueOf(txtCodigo.getText()));
             des.ExcluirDespesa(despesa);
+            } else{            
+            JOptionPane.showMessageDialog(null, "Escolha na tabela o item a ser excluído.");
+            }
         } else {
+            if (!"".equals(txtCodigo.getText())){
+            despesa.setCodDespesa(Integer.valueOf(txtCodigo.getText()));
             des.AlterarDespesa(despesa);
+            } else{
+                JOptionPane.showMessageDialog(null, "Escolha na tabela o item a ser alterado.");
+            }
         }
     }//GEN-LAST:event_buttonOKActionPerformed
 
@@ -431,6 +441,9 @@ public class JFrameDespesa extends javax.swing.JFrame {
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
         // TODO add your handling code here:
         habilitaRbButtons();
+        LimpaCamposTexto();
+        desabilitaCamposdeTexto();
+        desmarcarRbButtons();
 
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
@@ -622,11 +635,9 @@ public class JFrameDespesa extends javax.swing.JFrame {
     }
 
     private void habilitaRbButtons() {
-
         rbNovo.setEnabled(true);
         rbExcluir.setEnabled(true);
         rbAlterar.setEnabled(true);
-
     }
 
     private void desabilitaCamposdeTexto() {
@@ -638,11 +649,28 @@ public class JFrameDespesa extends javax.swing.JFrame {
     }
 
     private void habilitaCamposdeTexto() {
+        
         txtCodigo.setEnabled(true);
         txtDespesa.setEnabled(true);
         txtReduzida.setEnabled(true);
         txtPrograma.setEnabled(true);
         txtAplicacao.setEnabled(true);
+    }
+
+    private void LimpaCamposTexto() {
+       
+        txtCodigo.setText("");
+        txtDespesa.setText("");
+        txtPrograma.setText("");
+        txtAplicacao.setText("");
+        txtReduzida.setText("");       
+    }
+
+    private void desmarcarRbButtons() {
+    
+        rbNovo.setSelected(false);
+        rbExcluir.setSelected(false);
+        rbAlterar.setSelected(false);
     }
 
 }
