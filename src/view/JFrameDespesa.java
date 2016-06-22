@@ -276,6 +276,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
         label10.setText("Cod. Aplicação");
 
         buttonPesquisar.setText("Pesquisar");
+        buttonPesquisar.setEnabled(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
