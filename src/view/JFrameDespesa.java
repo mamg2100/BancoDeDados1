@@ -115,6 +115,11 @@ public class JFrameDespesa extends javax.swing.JFrame {
 
             }
         ));
+        jTableDespesa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableDespesaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableDespesa);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -278,7 +283,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonPesquisar)
-                .addGap(36, 36, 36))
+                .addGap(23, 23, 23))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -302,9 +307,9 @@ public class JFrameDespesa extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(30, 30, 30)
                 .addComponent(buttonPesquisar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -342,21 +347,21 @@ public class JFrameDespesa extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(14, 14, 14))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 39, -1, 460));
+        getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 39, 660, 440));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("DESPESAS");
@@ -464,6 +469,27 @@ public class JFrameDespesa extends javax.swing.JFrame {
     private void txtDespesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDespesa1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDespesa1ActionPerformed
+
+    private void jTableDespesaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableDespesaMouseClicked
+        try {
+            // TODO add your handling code here:
+            //Preenche os Campos de Texto correspondentes ao clicar numa linha do JTable
+            String codigodadespesa = "" + jTableDespesa.getValueAt(jTableDespesa.getSelectedRow(), 0);
+            conecta.conexao();
+            conecta.executaSQL("Select * from dotacao where cod_despesa='" + codigodadespesa + "'");
+            conecta.rs.first();
+            txtCodigo.setText(String.valueOf(conecta.rs.getInt("Cod_despesa")));
+            txtDespesa.setText(String.valueOf(conecta.rs.getString("Despesa")));
+            txtReduzida.setText(String.valueOf(conecta.rs.getString("Reduzida")));
+            txtPrograma.setText(String.valueOf(conecta.rs.getString("Programa")));
+            txtAplicacao.setText(String.valueOf(conecta.rs.getString("Acao")));
+            conecta.desconectar();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro ao capturar dados da linha selecionada [" + ex);
+        }
+               
+    }//GEN-LAST:event_jTableDespesaMouseClicked
 
     public void preencherTabela(String SQL) {
 
