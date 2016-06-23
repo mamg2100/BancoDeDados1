@@ -520,7 +520,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
 
     private void txtDespesaPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDespesaPesquisaActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtDespesaPesquisaActionPerformed
 
     private void jTableDespesaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableDespesaMouseClicked
@@ -545,13 +545,13 @@ public class JFrameDespesa extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableDespesaMouseClicked
 
     private void txtCodigoPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoPesquisaKeyPressed
-        
-        preencherTabela("Select * From dotacao order by cod_despesa");   
-        
+
+        preencherTabela("Select * From dotacao order by cod_despesa");
+
         habilitaCamposdeTexto();
         String pesquisarnome = txtCodigoPesquisa.getText();
         //JOptionPane.showMessageDialog(null, pesquisarnome);
-        
+
         if (pesquisarnome.length() > 0) {
             for (int i = 0; i < jTableDespesa.getRowCount(); i++) {
                 if (!pesquisarnome.equals(jTableDespesa.getValueAt(i, 0).toString())) {
@@ -562,7 +562,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
                     //txtReduzida.setText(jTableDespesa.getValueAt(i, 2).toString());
                     //txtPrograma.setText(jTableDespesa.getValueAt(i, 3).toString());
                     //txtAplicacao.setText(jTableDespesa.getValueAt(i, 4).toString());
-                    preencherTabela("Select * From dotacao where Cod_despesa='" + pesquisarnome +"'");
+                    preencherTabela("Select * From dotacao where Cod_despesa='" + pesquisarnome + "'");
                 }
             }
         }
@@ -575,18 +575,18 @@ public class JFrameDespesa extends javax.swing.JFrame {
     private void txtDespesaPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDespesaPesquisaKeyPressed
         // TODO add your handling code here:
         //if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        preencherTabela("Select * From dotacao order by cod_despesa");   
-        
-        habilitaCamposdeTexto();
+        preencherTabela("Select * From dotacao order by cod_despesa");
+
+        //habilitaCamposdeTexto();
         String pesquisadespesa = txtDespesaPesquisa.getText();
         //JOptionPane.showMessageDialog(null, pesquisarnome);
-        
+
         if (pesquisadespesa.length() > 0) {
             for (int i = 0; i < jTableDespesa.getRowCount(); i++) {
                 if (!pesquisadespesa.equals(jTableDespesa.getValueAt(i, 1).toString())) {
-                    
-                    preencherTabela("Select * From dotacao where despesa=''");
-                    
+
+                   // preencherTabela("Select * From dotacao where despesa=''");
+
                 } else {
                     //JOptionPane.showMessageDialog(null,jTableDespesa.getValueAt(i, 0).toString() );
                     //txtCodigo.setText(jTableDespesa.getValueAt(i, 0).toString());
@@ -594,15 +594,15 @@ public class JFrameDespesa extends javax.swing.JFrame {
                     //txtReduzida.setText(jTableDespesa.getValueAt(i, 2).toString());
                     //txtPrograma.setText(jTableDespesa.getValueAt(i, 3).toString());
                     //txtAplicacao.setText(jTableDespesa.getValueAt(i, 4).toString());
-                    preencherTabela("Select * From dotacao where despesa='" + pesquisadespesa +"'");
+                    preencherTabela("Select * From dotacao where despesa='" + pesquisadespesa + "'");
                 }
             }
         }
     }//GEN-LAST:event_txtDespesaPesquisaKeyPressed
 
     private void txtReduzidaPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReduzidaPesquisaActionPerformed
-        
-        
+
+
     }//GEN-LAST:event_txtReduzidaPesquisaActionPerformed
 
     private void txtProgramaPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProgramaPesquisaActionPerformed
@@ -610,12 +610,12 @@ public class JFrameDespesa extends javax.swing.JFrame {
     }//GEN-LAST:event_txtProgramaPesquisaActionPerformed
 
     private void txtProgramaPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProgramaPesquisaKeyPressed
-        
-        preencherTabela("Select * From dotacao order by cod_despesa");   
-        habilitaCamposdeTexto();
+
+        preencherTabela("Select * From dotacao order by cod_despesa");
+        //habilitaCamposdeTexto();
         String pesquisaprograma = txtProgramaPesquisa.getText();
         //JOptionPane.showMessageDialog(null, pesquisarnome);
-        
+
         if (pesquisaprograma.length() > 0) {
             for (int i = 0; i < jTableDespesa.getRowCount(); i++) {
                 if (!pesquisaprograma.equals(jTableDespesa.getValueAt(i, 3).toString())) {
@@ -626,7 +626,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
                     //txtReduzida.setText(jTableDespesa.getValueAt(i, 2).toString());
                     //txtPrograma.setText(jTableDespesa.getValueAt(i, 3).toString());
                     //txtAplicacao.setText(jTableDespesa.getValueAt(i, 4).toString());
-                    preencherTabela("Select * From dotacao where programa='" + pesquisaprograma +"'");
+                    preencherTabela("Select * From dotacao where programa='" + pesquisaprograma + "'");
                 }
             }
         }
@@ -634,12 +634,12 @@ public class JFrameDespesa extends javax.swing.JFrame {
 
     private void txtReduzidaPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtReduzidaPesquisaKeyPressed
         // TODO add your handling code here:
-        preencherTabela("Select * From dotacao order by cod_despesa");   
-        
+        preencherTabela("Select * From dotacao order by cod_despesa");
+
         habilitaCamposdeTexto();
         String pesquisareduzida = txtReduzidaPesquisa.getText();
         //JOptionPane.showMessageDialog(null, pesquisarnome);
-        
+
         if (pesquisareduzida.length() > 0) {
             for (int i = 0; i < jTableDespesa.getRowCount(); i++) {
                 if (!pesquisareduzida.equals(jTableDespesa.getValueAt(i, 2).toString())) {
@@ -650,20 +650,20 @@ public class JFrameDespesa extends javax.swing.JFrame {
                     //txtReduzida.setText(jTableDespesa.getValueAt(i, 2).toString());
                     //txtPrograma.setText(jTableDespesa.getValueAt(i, 3).toString());
                     //txtAplicacao.setText(jTableDespesa.getValueAt(i, 4).toString());
-                    preencherTabela("Select * From dotacao where reduzida='" + pesquisareduzida +"'");
+                    preencherTabela("Select * From dotacao where reduzida='" + pesquisareduzida + "'");
                 }
             }
         }
     }//GEN-LAST:event_txtReduzidaPesquisaKeyPressed
 
     private void txtAplicacaoPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAplicacaoPesquisaKeyPressed
-        
-        preencherTabela("Select * From dotacao order by cod_despesa");   
-        
+
+        preencherTabela("Select * From dotacao order by cod_despesa");
+
         habilitaCamposdeTexto();
         String pesquisaaplicacao = txtAplicacaoPesquisa.getText();
         //JOptionPane.showMessageDialog(null, pesquisarnome);
-        
+
         if (pesquisaaplicacao.length() > 0) {
             for (int i = 0; i < jTableDespesa.getRowCount(); i++) {
                 if (!pesquisaaplicacao.equals(jTableDespesa.getValueAt(i, 4).toString())) {
@@ -674,7 +674,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
                     //txtReduzida.setText(jTableDespesa.getValueAt(i, 2).toString());
                     //txtPrograma.setText(jTableDespesa.getValueAt(i, 3).toString());
                     //txtAplicacao.setText(jTableDespesa.getValueAt(i, 4).toString());
-                    preencherTabela("Select * From dotacao where acao='" + pesquisaaplicacao +"'");
+                    preencherTabela("Select * From dotacao where acao='" + pesquisaaplicacao + "'");
                 }
             }
         }
