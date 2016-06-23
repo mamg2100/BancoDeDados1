@@ -7,6 +7,9 @@ package view;
 
 import controller.ConnectionDB;
 import controller.ControllerDespesa;
+import controller.ModelTabela;
+import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -14,8 +17,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import model.ModelDespesa;
-import controller.ModelTabela;
-import java.sql.ResultSet;
 
 /**
  *
@@ -52,7 +53,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        panel1 = new java.awt.Panel();
+        panelPesquisa = new java.awt.Panel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableDespesa = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -76,16 +77,16 @@ public class JFrameDespesa extends javax.swing.JFrame {
         buttonAlterar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         label6 = new java.awt.Label();
-        txtCodigo1 = new java.awt.TextField();
+        txtCodigoPesquisa = new java.awt.TextField();
         label7 = new java.awt.Label();
-        txtDespesa1 = new java.awt.TextField();
+        txtDespesaPesquisa = new java.awt.TextField();
         label8 = new java.awt.Label();
-        txtReduzida1 = new java.awt.TextField();
+        txtReduzidaPesquisa = new java.awt.TextField();
         label9 = new java.awt.Label();
-        txtPrograma1 = new java.awt.TextField();
+        txtProgramaPesquisa = new java.awt.TextField();
         label10 = new java.awt.Label();
-        txtAplicacao1 = new java.awt.TextField();
-        buttonPesquisar = new javax.swing.JButton();
+        txtAplicacaoPesquisa = new java.awt.TextField();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -251,119 +252,143 @@ public class JFrameDespesa extends javax.swing.JFrame {
         jPanel1.add(buttonAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 84, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setName(""); // NOI18N
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label6.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label6.setText("Código");
+        jPanel2.add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 20, -1, 15));
 
-        txtCodigo1.setEnabled(false);
+        txtCodigoPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCodigoPesquisaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodigoPesquisaFocusLost(evt);
+            }
+        });
+        txtCodigoPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoPesquisaActionPerformed(evt);
+            }
+        });
+        txtCodigoPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigoPesquisaKeyPressed(evt);
+            }
+        });
+        jPanel2.add(txtCodigoPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 40, 72, -1));
 
         label7.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label7.setText("Desdobrada");
+        jPanel2.add(label7, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 70, -1, 15));
 
-        txtDespesa1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDespesa1ActionPerformed(evt);
+        txtDespesaPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDespesaPesquisaFocusGained(evt);
             }
         });
+        txtDespesaPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDespesaPesquisaActionPerformed(evt);
+            }
+        });
+        txtDespesaPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDespesaPesquisaKeyPressed(evt);
+            }
+        });
+        jPanel2.add(txtDespesaPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 90, 72, -1));
 
         label8.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label8.setText("Reduzida");
+        jPanel2.add(label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 70, -1, 15));
+
+        txtReduzidaPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtReduzidaPesquisaFocusGained(evt);
+            }
+        });
+        txtReduzidaPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtReduzidaPesquisaActionPerformed(evt);
+            }
+        });
+        txtReduzidaPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtReduzidaPesquisaKeyPressed(evt);
+            }
+        });
+        jPanel2.add(txtReduzidaPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 90, 72, -1));
 
         label9.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label9.setText("Programa");
+        jPanel2.add(label9, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 120, -1, 15));
+
+        txtProgramaPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtProgramaPesquisaFocusGained(evt);
+            }
+        });
+        txtProgramaPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProgramaPesquisaActionPerformed(evt);
+            }
+        });
+        txtProgramaPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtProgramaPesquisaKeyPressed(evt);
+            }
+        });
+        jPanel2.add(txtProgramaPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 140, 162, -1));
 
         label10.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         label10.setText("Cod. Aplicação");
+        jPanel2.add(label10, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 170, -1, 15));
 
-        buttonPesquisar.setText("Pesquisar");
-        buttonPesquisar.setEnabled(false);
+        txtAplicacaoPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtAplicacaoPesquisaFocusGained(evt);
+            }
+        });
+        txtAplicacaoPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAplicacaoPesquisaKeyPressed(evt);
+            }
+        });
+        jPanel2.add(txtAplicacaoPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 190, 162, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonPesquisar)
-                .addGap(23, 23, 23))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(17, 17, 17)
-                            .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(txtDespesa1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtReduzida1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtPrograma1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                        .addComponent(txtAplicacao1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(buttonPesquisar)
-                .addContainerGap(172, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(5, 5, 5)
-                    .addComponent(txtCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(10, 10, 10)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(5, 5, 5)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtDespesa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtReduzida1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(10, 10, 10)
-                    .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(5, 5, 5)
-                    .addComponent(txtPrograma1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(10, 10, 10)
-                    .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(5, 5, 5)
-                    .addComponent(txtAplicacao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Pesquisas");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, 30));
 
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelPesquisaLayout = new javax.swing.GroupLayout(panelPesquisa);
+        panelPesquisa.setLayout(panelPesquisaLayout);
+        panelPesquisaLayout.setHorizontalGroup(
+            panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPesquisaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panel1Layout.createSequentialGroup()
+                    .addGroup(panelPesquisaLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+        panelPesquisaLayout.setVerticalGroup(
+            panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPesquisaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGroup(panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 39, 670, 440));
+        getContentPane().add(panelPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 39, 670, 440));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("DESPESAS");
@@ -387,17 +412,17 @@ public class JFrameDespesa extends javax.swing.JFrame {
         if (rbNovo.isSelected()) {
             des.InserirDespesa(despesa);
         } else if (rbExcluir.isSelected()) {
-            if (!"".equals(txtCodigo.getText())){
-            despesa.setCodDespesa(Integer.valueOf(txtCodigo.getText()));
-            des.ExcluirDespesa(despesa);
-            } else{            
-            JOptionPane.showMessageDialog(null, "Escolha na tabela o item a ser excluído.");
+            if (!"".equals(txtCodigo.getText())) {
+                despesa.setCodDespesa(Integer.valueOf(txtCodigo.getText()));
+                des.ExcluirDespesa(despesa);
+            } else {
+                JOptionPane.showMessageDialog(null, "Escolha na tabela o item a ser excluído.");
             }
         } else {
-            if (!"".equals(txtCodigo.getText())){
-            despesa.setCodDespesa(Integer.valueOf(txtCodigo.getText()));
-            des.AlterarDespesa(despesa);
-            } else{
+            if (!"".equals(txtCodigo.getText())) {
+                despesa.setCodDespesa(Integer.valueOf(txtCodigo.getText()));
+                des.AlterarDespesa(despesa);
+            } else {
                 JOptionPane.showMessageDialog(null, "Escolha na tabela o item a ser alterado.");
             }
         }
@@ -493,9 +518,10 @@ public class JFrameDespesa extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_buttonSairActionPerformed
 
-    private void txtDespesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDespesa1ActionPerformed
+    private void txtDespesaPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDespesaPesquisaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDespesa1ActionPerformed
+        
+    }//GEN-LAST:event_txtDespesaPesquisaActionPerformed
 
     private void jTableDespesaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableDespesaMouseClicked
         try {
@@ -518,6 +544,191 @@ public class JFrameDespesa extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTableDespesaMouseClicked
 
+    private void txtCodigoPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoPesquisaKeyPressed
+        
+        preencherTabela("Select * From dotacao order by cod_despesa");   
+        
+        habilitaCamposdeTexto();
+        String pesquisarnome = txtCodigoPesquisa.getText();
+        //JOptionPane.showMessageDialog(null, pesquisarnome);
+        
+        if (pesquisarnome.length() > 0) {
+            for (int i = 0; i < jTableDespesa.getRowCount(); i++) {
+                if (!pesquisarnome.equals(jTableDespesa.getValueAt(i, 0).toString())) {
+                } else {
+                    //JOptionPane.showMessageDialog(null,jTableDespesa.getValueAt(i, 0).toString() );
+                    //txtCodigo.setText(jTableDespesa.getValueAt(i, 0).toString());
+                    //txtDespesa.setText(jTableDespesa.getValueAt(i, 1).toString());
+                    //txtReduzida.setText(jTableDespesa.getValueAt(i, 2).toString());
+                    //txtPrograma.setText(jTableDespesa.getValueAt(i, 3).toString());
+                    //txtAplicacao.setText(jTableDespesa.getValueAt(i, 4).toString());
+                    preencherTabela("Select * From dotacao where Cod_despesa='" + pesquisarnome +"'");
+                }
+            }
+        }
+    }//GEN-LAST:event_txtCodigoPesquisaKeyPressed
+
+    private void txtCodigoPesquisaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoPesquisaFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoPesquisaFocusLost
+
+    private void txtDespesaPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDespesaPesquisaKeyPressed
+        // TODO add your handling code here:
+        //if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        preencherTabela("Select * From dotacao order by cod_despesa");   
+        
+        habilitaCamposdeTexto();
+        String pesquisadespesa = txtDespesaPesquisa.getText();
+        //JOptionPane.showMessageDialog(null, pesquisarnome);
+        
+        if (pesquisadespesa.length() > 0) {
+            for (int i = 0; i < jTableDespesa.getRowCount(); i++) {
+                if (!pesquisadespesa.equals(jTableDespesa.getValueAt(i, 1).toString())) {
+                    
+                    preencherTabela("Select * From dotacao where despesa=''");
+                    
+                } else {
+                    //JOptionPane.showMessageDialog(null,jTableDespesa.getValueAt(i, 0).toString() );
+                    //txtCodigo.setText(jTableDespesa.getValueAt(i, 0).toString());
+                    //txtDespesa.setText(jTableDespesa.getValueAt(i, 1).toString());
+                    //txtReduzida.setText(jTableDespesa.getValueAt(i, 2).toString());
+                    //txtPrograma.setText(jTableDespesa.getValueAt(i, 3).toString());
+                    //txtAplicacao.setText(jTableDespesa.getValueAt(i, 4).toString());
+                    preencherTabela("Select * From dotacao where despesa='" + pesquisadespesa +"'");
+                }
+            }
+        }
+    }//GEN-LAST:event_txtDespesaPesquisaKeyPressed
+
+    private void txtReduzidaPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReduzidaPesquisaActionPerformed
+        
+        
+    }//GEN-LAST:event_txtReduzidaPesquisaActionPerformed
+
+    private void txtProgramaPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProgramaPesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProgramaPesquisaActionPerformed
+
+    private void txtProgramaPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProgramaPesquisaKeyPressed
+        
+        preencherTabela("Select * From dotacao order by cod_despesa");   
+        habilitaCamposdeTexto();
+        String pesquisaprograma = txtProgramaPesquisa.getText();
+        //JOptionPane.showMessageDialog(null, pesquisarnome);
+        
+        if (pesquisaprograma.length() > 0) {
+            for (int i = 0; i < jTableDespesa.getRowCount(); i++) {
+                if (!pesquisaprograma.equals(jTableDespesa.getValueAt(i, 3).toString())) {
+                } else {
+                    //JOptionPane.showMessageDialog(null,jTableDespesa.getValueAt(i, 0).toString() );
+                    //txtCodigo.setText(jTableDespesa.getValueAt(i, 0).toString());
+                    //txtDespesa.setText(jTableDespesa.getValueAt(i, 1).toString());
+                    //txtReduzida.setText(jTableDespesa.getValueAt(i, 2).toString());
+                    //txtPrograma.setText(jTableDespesa.getValueAt(i, 3).toString());
+                    //txtAplicacao.setText(jTableDespesa.getValueAt(i, 4).toString());
+                    preencherTabela("Select * From dotacao where programa='" + pesquisaprograma +"'");
+                }
+            }
+        }
+    }//GEN-LAST:event_txtProgramaPesquisaKeyPressed
+
+    private void txtReduzidaPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtReduzidaPesquisaKeyPressed
+        // TODO add your handling code here:
+        preencherTabela("Select * From dotacao order by cod_despesa");   
+        
+        habilitaCamposdeTexto();
+        String pesquisareduzida = txtReduzidaPesquisa.getText();
+        //JOptionPane.showMessageDialog(null, pesquisarnome);
+        
+        if (pesquisareduzida.length() > 0) {
+            for (int i = 0; i < jTableDespesa.getRowCount(); i++) {
+                if (!pesquisareduzida.equals(jTableDespesa.getValueAt(i, 2).toString())) {
+                } else {
+                    //JOptionPane.showMessageDialog(null,jTableDespesa.getValueAt(i, 0).toString() );
+                    //txtCodigo.setText(jTableDespesa.getValueAt(i, 0).toString());
+                    //txtDespesa.setText(jTableDespesa.getValueAt(i, 1).toString());
+                    //txtReduzida.setText(jTableDespesa.getValueAt(i, 2).toString());
+                    //txtPrograma.setText(jTableDespesa.getValueAt(i, 3).toString());
+                    //txtAplicacao.setText(jTableDespesa.getValueAt(i, 4).toString());
+                    preencherTabela("Select * From dotacao where reduzida='" + pesquisareduzida +"'");
+                }
+            }
+        }
+    }//GEN-LAST:event_txtReduzidaPesquisaKeyPressed
+
+    private void txtAplicacaoPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAplicacaoPesquisaKeyPressed
+        
+        preencherTabela("Select * From dotacao order by cod_despesa");   
+        
+        habilitaCamposdeTexto();
+        String pesquisaaplicacao = txtAplicacaoPesquisa.getText();
+        //JOptionPane.showMessageDialog(null, pesquisarnome);
+        
+        if (pesquisaaplicacao.length() > 0) {
+            for (int i = 0; i < jTableDespesa.getRowCount(); i++) {
+                if (!pesquisaaplicacao.equals(jTableDespesa.getValueAt(i, 4).toString())) {
+                } else {
+                    //JOptionPane.showMessageDialog(null,jTableDespesa.getValueAt(i, 0).toString() );
+                    //txtCodigo.setText(jTableDespesa.getValueAt(i, 0).toString());
+                    //txtDespesa.setText(jTableDespesa.getValueAt(i, 1).toString());
+                    //txtReduzida.setText(jTableDespesa.getValueAt(i, 2).toString());
+                    //txtPrograma.setText(jTableDespesa.getValueAt(i, 3).toString());
+                    //txtAplicacao.setText(jTableDespesa.getValueAt(i, 4).toString());
+                    preencherTabela("Select * From dotacao where acao='" + pesquisaaplicacao +"'");
+                }
+            }
+        }
+    }//GEN-LAST:event_txtAplicacaoPesquisaKeyPressed
+
+    private void txtCodigoPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoPesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoPesquisaActionPerformed
+
+    private void txtCodigoPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoPesquisaFocusGained
+        // TODO add your handling code here:
+        //txtCodigoPesquisa.setText("");
+        txtDespesaPesquisa.setText("");
+        txtProgramaPesquisa.setText("");
+        txtAplicacaoPesquisa.setText("");
+        txtReduzidaPesquisa.setText("");
+    }//GEN-LAST:event_txtCodigoPesquisaFocusGained
+
+    private void txtDespesaPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDespesaPesquisaFocusGained
+        // TODO add your handling code here:
+        txtCodigoPesquisa.setText("");
+        //txtDespesaPesquisa.setText("");
+        txtProgramaPesquisa.setText("");
+        txtAplicacaoPesquisa.setText("");
+        txtReduzidaPesquisa.setText("");
+    }//GEN-LAST:event_txtDespesaPesquisaFocusGained
+
+    private void txtReduzidaPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtReduzidaPesquisaFocusGained
+        // TODO add your handling code here:
+        txtCodigoPesquisa.setText("");
+        txtDespesaPesquisa.setText("");
+        txtProgramaPesquisa.setText("");
+        txtAplicacaoPesquisa.setText("");
+        //txtReduzidaPesquisa.setText("");
+    }//GEN-LAST:event_txtReduzidaPesquisaFocusGained
+
+    private void txtProgramaPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProgramaPesquisaFocusGained
+        // TODO add your handling code here:
+        txtCodigoPesquisa.setText("");
+        txtDespesaPesquisa.setText("");
+        //txtProgramaPesquisa.setText("");
+        txtAplicacaoPesquisa.setText("");
+        txtReduzidaPesquisa.setText("");
+    }//GEN-LAST:event_txtProgramaPesquisaFocusGained
+
+    private void txtAplicacaoPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAplicacaoPesquisaFocusGained
+        // TODO add your handling code here:
+        txtCodigoPesquisa.setText("");
+        txtDespesaPesquisa.setText("");
+        txtProgramaPesquisa.setText("");
+        //txtAplicacaoPesquisa.setText("");
+        txtReduzidaPesquisa.setText("");
+    }//GEN-LAST:event_txtAplicacaoPesquisaFocusGained
+
     public void preencherTabela(String SQL) {
 
         ArrayList dados = new ArrayList();
@@ -531,7 +742,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
                 dados.add(new Object[]{conecta.rs.getInt("Cod_Despesa"), conecta.rs.getString("Despesa"), conecta.rs.getString("Reduzida"), conecta.rs.getString("Programa"), conecta.rs.getString("Acao")});
             } while (conecta.rs.next());
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao preencher o ArrayList!\n " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Informação não encontrada.\n" + ex.getMessage());
         }
 
         //Criando a Tabela
@@ -592,9 +803,9 @@ public class JFrameDespesa extends javax.swing.JFrame {
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonOK;
-    private javax.swing.JButton buttonPesquisar;
     private javax.swing.JButton buttonSair;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -611,20 +822,20 @@ public class JFrameDespesa extends javax.swing.JFrame {
     private java.awt.Label label7;
     private java.awt.Label label8;
     private java.awt.Label label9;
-    private java.awt.Panel panel1;
+    private java.awt.Panel panelPesquisa;
     private javax.swing.JRadioButton rbAlterar;
     private javax.swing.JRadioButton rbExcluir;
     private javax.swing.JRadioButton rbNovo;
     private java.awt.TextField txtAplicacao;
-    private java.awt.TextField txtAplicacao1;
+    private java.awt.TextField txtAplicacaoPesquisa;
     private java.awt.TextField txtCodigo;
-    private java.awt.TextField txtCodigo1;
+    private java.awt.TextField txtCodigoPesquisa;
     private java.awt.TextField txtDespesa;
-    private java.awt.TextField txtDespesa1;
+    private java.awt.TextField txtDespesaPesquisa;
     private java.awt.TextField txtPrograma;
-    private java.awt.TextField txtPrograma1;
+    private java.awt.TextField txtProgramaPesquisa;
     private java.awt.TextField txtReduzida;
-    private java.awt.TextField txtReduzida1;
+    private java.awt.TextField txtReduzidaPesquisa;
     // End of variables declaration//GEN-END:variables
 
     private void desabilitaRbButtons() {
@@ -650,7 +861,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
     }
 
     private void habilitaCamposdeTexto() {
-        
+
         txtCodigo.setEnabled(true);
         txtDespesa.setEnabled(true);
         txtReduzida.setEnabled(true);
@@ -659,19 +870,18 @@ public class JFrameDespesa extends javax.swing.JFrame {
     }
 
     private void LimpaCamposTexto() {
-       
+
         txtCodigo.setText("");
         txtDespesa.setText("");
         txtPrograma.setText("");
         txtAplicacao.setText("");
-        txtReduzida.setText("");       
+        txtReduzida.setText("");
     }
 
     private void desmarcarRbButtons() {
-    
+
         rbNovo.setSelected(false);
         rbExcluir.setSelected(false);
         rbAlterar.setSelected(false);
     }
-
 }

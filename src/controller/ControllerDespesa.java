@@ -7,6 +7,7 @@ package controller;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -16,7 +17,7 @@ import model.ModelDespesa;
  *
  * @author Marco Antonio
  */
-public class ControllerDespesa {
+public class ControllerDespesa extends ConnectionDB{
 
     ConnectionDB conecta = new ConnectionDB();
 
@@ -78,6 +79,7 @@ public class ControllerDespesa {
             JOptionPane.showMessageDialog(null, "Dados não foram atualizados!"+ex);
         }  
     
-    }
+    }   
+    
 
 }
