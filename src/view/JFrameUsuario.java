@@ -7,7 +7,11 @@ package view;
 
 import controller.ConnectionDB;
 import controller.ControllerUsuario;
+import controller.ModelTabela;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import model.ModelUsuario;
 
 /**
@@ -27,7 +31,12 @@ public class JFrameUsuario extends javax.swing.JFrame {
     public JFrameUsuario() {
         initComponents();
         
-         conecta.conexao();
+         
+             
+        desabilitaCamposdeTexto();
+        conecta.conexao();
+        preencherTabela("select * from usuario order by Cod_usuario");
+       
     }
 
     /**
@@ -78,6 +87,8 @@ public class JFrameUsuario extends javax.swing.JFrame {
         radioNome = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
         jPanel5 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableUsuario = new javax.swing.JTable();
 
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -218,6 +229,11 @@ public class JFrameUsuario extends javax.swing.JFrame {
         });
 
         buttonCancelar.setText("Cancelar");
+        buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelarActionPerformed(evt);
+            }
+        });
 
         buttonSair.setText("Sair");
 
@@ -281,7 +297,7 @@ public class JFrameUsuario extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 7, Short.MAX_VALUE)
+                .addGap(0, 13, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -371,15 +387,32 @@ public class JFrameUsuario extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jTableUsuario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTableUsuario);
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 189, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 8, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -403,7 +436,7 @@ public class JFrameUsuario extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -462,7 +495,49 @@ public class JFrameUsuario extends javax.swing.JFrame {
       habilitaCamposdeTexto();        
 // TODO add your handling code here:
     }//GEN-LAST:event_rdNovoActionPerformed
-    
+
+    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
+        habilitaRdButtons();
+        LimpaCamposTexto();
+        desabilitaCamposdeTexto();
+        desmarcarRbButtons();
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_buttonCancelarActionPerformed
+    public void preencherTabela(String SQL) {
+
+        ArrayList dados = new ArrayList();
+        String[] colunas = new String[]{"Código", "Usuario", "Login", "Senha", "Lotação", "Email", "Tipo"};
+
+        conecta.executaSQL(SQL);
+
+        try {
+            conecta.rs.first();//"update usuario set Nome_usuario=?,Login_usuario=?,Senha_usuario=?,Setor_usuario=?,Email_usuario=?,Tipo_usuario=
+            do {
+                dados.add(new Object[]{conecta.rs.getInt("Cod_Usuario"), conecta.rs.getString("Nome_usuario"), conecta.rs.getString("Login_usuario"), conecta.rs.getString("Senha_usuario"), conecta.rs.getString("Setor_usuario"), conecta.rs.getString("Email_usuario"), conecta.rs.getString("Tipo_usuario")});
+            } while (conecta.rs.next());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Informação não encontrada.\n" + ex.getMessage());
+        }
+
+        //Criando a Tabela
+        ModelTabela modelo = new ModelTabela(dados, colunas);
+        jTableUsuario.setModel(modelo);
+        jTableUsuario.getColumnModel().getColumn(0).setPreferredWidth(120);
+        jTableUsuario.getColumnModel().getColumn(0).setResizable(false);
+        jTableUsuario.getColumnModel().getColumn(1).setPreferredWidth(120);
+        jTableUsuario.getColumnModel().getColumn(1).setResizable(false);
+        jTableUsuario.getColumnModel().getColumn(2).setPreferredWidth(120);
+        jTableUsuario.getColumnModel().getColumn(2).setResizable(false);
+        jTableUsuario.getColumnModel().getColumn(3).setPreferredWidth(120);
+        jTableUsuario.getColumnModel().getColumn(3).setResizable(false);
+        jTableUsuario.getColumnModel().getColumn(4).setPreferredWidth(120);
+        jTableUsuario.getColumnModel().getColumn(4).setResizable(false);
+        jTableUsuario.getTableHeader().setReorderingAllowed(false);
+        jTableUsuario.setAutoResizeMode(jTableUsuario.AUTO_RESIZE_OFF);
+        jTableUsuario.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }
+
                                 
     /**
      * @param args the command line arguments
@@ -526,6 +601,8 @@ public class JFrameUsuario extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableUsuario;
     private javax.swing.JRadioButton radioNome;
     private javax.swing.JRadioButton rdAlterar;
     private javax.swing.JRadioButton rdExcluir;
