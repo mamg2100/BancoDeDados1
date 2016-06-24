@@ -186,7 +186,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
                 rbAlterarActionPerformed(evt);
             }
         });
-        jPanel1.add(rbAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 68, 41));
+        jPanel1.add(rbAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 68, 41));
 
         rbExcluir.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         rbExcluir.setText("Excluir");
@@ -200,7 +200,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
                 rbExcluirActionPerformed(evt);
             }
         });
-        jPanel1.add(rbExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, 41));
+        jPanel1.add(rbExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, -1, 41));
 
         buttonOK.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         buttonOK.setText("OK");
@@ -509,6 +509,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
 
     private void rbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAlterarActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Dê duplo clique com o mouse na linha da tabela acima \n correspondente à despesa que você quer alterar");
         desabilitaRbButtons();
         habilitaCamposdeTexto();
     }//GEN-LAST:event_rbAlterarActionPerformed
