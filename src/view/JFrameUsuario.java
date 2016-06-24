@@ -222,6 +222,11 @@ public class JFrameUsuario extends javax.swing.JFrame {
         buttonSair.setText("Sair");
 
         rdNovo.setText("Novo");
+        rdNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdNovoActionPerformed(evt);
+            }
+        });
 
         rdAlterar.setText("Alterar");
 
@@ -451,6 +456,12 @@ public class JFrameUsuario extends javax.swing.JFrame {
     private void txtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTipoActionPerformed
+
+    private void rdNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdNovoActionPerformed
+      desabilitaRdButtons();
+      habilitaCamposdeTexto();        
+// TODO add your handling code here:
+    }//GEN-LAST:event_rdNovoActionPerformed
     
                                 
     /**
@@ -529,4 +540,58 @@ public class JFrameUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsuario;
     private javax.swing.JTextField txtUsuario1;
     // End of variables declaration//GEN-END:variables
+
+ private void desabilitaRdButtons() {
+
+        rdNovo.setEnabled(false);
+        rdExcluir.setEnabled(false);
+        rdAlterar.setEnabled(false);
+
+    }
+
+    private void habilitaRdButtons() {
+        rdNovo.setEnabled(true);
+        rdExcluir.setEnabled(true);
+        rdAlterar.setEnabled(true);
+    }
+
+    private void desabilitaCamposdeTexto() {
+        txtCodigo.setEnabled(false);
+        txtUsuario.setEnabled(false);
+        txtLogin.setEnabled(false);
+        txtSenha.setEnabled(false);
+        txtLotacao.setEnabled(false);
+        txtEmail.setEnabled(false);
+        txtTipo.setEnabled(false);
+    }
+
+    private void habilitaCamposdeTexto() {
+
+        txtCodigo.setEnabled(true);
+        txtUsuario.setEnabled(true);
+        txtLogin.setEnabled(true);
+        txtSenha.setEnabled(true);
+        txtLotacao.setEnabled(true);
+        txtEmail.setEnabled(true);
+        txtTipo.setEnabled(true);
+    }
+
+    private void LimpaCamposTexto() {
+
+        txtCodigo.setText("");
+       txtCodigo.setText("");
+        txtUsuario.setText("");
+        txtLogin.setText("");
+        txtSenha.setText("");
+        txtLotacao.setText("");
+        txtEmail.setText("");
+        txtTipo.setText("");
+    }
+
+    private void desmarcarRbButtons() {
+
+        rdNovo.setSelected(false);
+        rdExcluir.setSelected(false);
+        rdAlterar.setSelected(false);
+    }
 }
