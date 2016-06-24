@@ -12,4 +12,10 @@ package model;
  */
 public class ModelRim {
     
+    private int codDespesa; 
+    private String despesa;
+    private String Reduzida;
+    private String Programa;  
+    private String Aplicacao;
+    
 }
