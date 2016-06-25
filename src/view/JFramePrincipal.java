@@ -229,12 +229,15 @@ public class JFramePrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFrameUsuario formusuario = new JFrameUsuario();
         formusuario.setVisible(true);
+       
+        
     }//GEN-LAST:event_menuItemUsuarioActionPerformed
 
     private void menuItemUnidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemUnidadeActionPerformed
         // TODO add your handling code here:
         JFrameUnidade formunidade = new JFrameUnidade();
         formunidade.setVisible(true);
+       
     }//GEN-LAST:event_menuItemUnidadeActionPerformed
 
     /**

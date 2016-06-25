@@ -16,6 +16,7 @@ public class JFramePesquisaRim extends javax.swing.JFrame {
      */
     public JFramePesquisaRim() {
         initComponents();
+        setDefaultCloseOperation(JFramePesquisaRim.HIDE_ON_CLOSE);
         
     }
 

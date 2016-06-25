@@ -10,6 +10,7 @@ import controller.ControllerUsuario;
 import controller.ModelTabela;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import model.ModelUsuario;
@@ -24,15 +25,13 @@ public class JFrameUsuario extends javax.swing.JFrame {
     ModelUsuario usuario = new ModelUsuario();
     ControllerUsuario usu = new ControllerUsuario();
     
-    
     /**
      * Creates new form JFrameUsuario
      */
     public JFrameUsuario() {
         initComponents();
-        
-         
-             
+        setDefaultCloseOperation(JFrameUsuario.HIDE_ON_CLOSE);
+      
         desabilitaCamposdeTexto();
         conecta.conexao();
         preencherTabela("select * from usuario order by Cod_usuario");
@@ -570,8 +569,11 @@ public class JFrameUsuario extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new JFrameUsuario().setVisible(true);
+               
             }
+            
         });
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -671,4 +673,6 @@ public class JFrameUsuario extends javax.swing.JFrame {
         rdExcluir.setSelected(false);
         rdAlterar.setSelected(false);
     }
+
+   
 }

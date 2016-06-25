@@ -36,6 +36,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
      */
     public JFrameDespesa() {
         initComponents();
+        setDefaultCloseOperation(JFrameDespesa.HIDE_ON_CLOSE);
         // desabilitando os campos de texto para edição ao abrir o formulário
         desabilitaCamposdeTexto();
         conecta.conexao();
