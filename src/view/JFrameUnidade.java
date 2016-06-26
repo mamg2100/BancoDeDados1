@@ -5,12 +5,19 @@
  */
 package view;
 
+import controller.ConnectionDB;
+import controller.ControllerUsuario;
+import model.ModelUsuario;
+
 /**
  *
  * @author 64033
  */
 public class JFrameUnidade extends javax.swing.JFrame {
-
+      ConnectionDB conecta = new ConnectionDB();
+      
+      ControllerUsuario usu = new ControllerUsuario();
+    
     /**
      * Creates new form JFrameUnidade
      */
