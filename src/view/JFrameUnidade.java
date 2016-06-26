@@ -9,6 +9,7 @@ import controller.ConnectionDB;
 import controller.ControllerUnidade;
 import controller.ControllerUsuario;
 import controller.ModelTabela;
+import jacontrol.Classes.WebServiceCep;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -147,6 +148,12 @@ public class JFrameUnidade extends javax.swing.JFrame {
             }
         });
 
+        txtCep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCepActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelEnderecoLayout = new javax.swing.GroupLayout(jPanelEndereco);
         jPanelEndereco.setLayout(jPanelEnderecoLayout);
         jPanelEnderecoLayout.setHorizontalGroup(
@@ -177,7 +184,7 @@ public class JFrameUnidade extends javax.swing.JFrame {
                                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                                         .addComponent(txtCep)
-                                        .addGap(81, 81, 81))
+                                        .addGap(73, 73, 73))
                                     .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                                         .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel12)
@@ -482,13 +489,15 @@ public class JFrameUnidade extends javax.swing.JFrame {
         unidade.setUnidade(txtUnidadeSetor.getText());
         unidade.setEndereco(txtLogradouro.getText());
         unidade.setNumero(txtNumero.getText());
+        unidade.setBairro(txtBairro.getText());
         unidade.setCidade(txtCidade.getText());
-        unidade.setCep(txtCep.getText());
+        unidade.setUfUnidade(comboBoxUf.getSelectedItem().toString());
         unidade.setTelefone1(txtFone1.getText());
         unidade.setTelefone2(txtFone2.getText());
         unidade.setResponsavel(txtResponsavel.getText());
         unidade.setFoneContato(txtCelular.getText());
         unidade.setTipo(comboBoxTipo.getSelectedItem().toString());
+        
 
 // TODO add your handling code here:
         if (jRadioButtonNovo.isSelected()) {
@@ -512,6 +521,36 @@ public class JFrameUnidade extends javax.swing.JFrame {
         desabilitaRdButtons();
         habilitaCamposdeTexto();  
     }//GEN-LAST:event_jRadioButtonNovoActionPerformed
+
+    private void txtCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCepActionPerformed
+         buscaCep();
+    }//GEN-LAST:event_txtCepActionPerformed
+     public void buscaCep() {
+        //Faz a busca para o cep 58043-280
+        WebServiceCep webServiceCep = WebServiceCep.searchCep(txtCep.getText());
+        //A ferramenta de busca ignora qualquer caracter que n?o seja n?mero.
+
+        //caso a busca ocorra bem, imprime os resultados.
+        if (webServiceCep.wasSuccessful()) {
+            txtLogradouro.setText(webServiceCep.getLogradouroFull());
+            txtCidade.setText(webServiceCep.getCidade());
+            txtBairro.setText(webServiceCep.getBairro());
+            comboBoxUf.setSelectedItem(webServiceCep.getUf());
+            System.out.println("Cep: " + webServiceCep.getCep());
+            System.out.println("Logradouro: " + webServiceCep.getLogradouroFull());
+            System.out.println("Bairro: " + webServiceCep.getBairro());
+            System.out.println("Cidade: "
+                    + webServiceCep.getCidade() + "/" + webServiceCep.getUf());
+
+            //caso haja problemas imprime as exce??es.
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
+
+            JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
+        }
+    }
+    
+    
     public void preencherTabela(String SQL) {
 
         ArrayList dados = new ArrayList();
@@ -671,6 +710,7 @@ private void desabilitaRdButtons() {
         txtUnidadeSetor.setEnabled(true);
         txtLogradouro.setEnabled(true);
         txtNumero.setEnabled(true);
+        txtBairro.setEnabled(true);
         txtCidade.setEnabled(true);
         txtCep.setEnabled(true);
         txtFone1.setEnabled(true);
