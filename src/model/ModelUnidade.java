@@ -11,7 +11,7 @@ package model;
  */
 public class ModelUnidade {
 
-    private int codUsuario;
+    private int codUnidade;
     private String unidade;
     private String endereco;
     private String bairro;
@@ -26,17 +26,17 @@ public class ModelUnidade {
     private String tipo;
 
     /**
-     * @return the codUsuario
+     * @return the codUnidade
      */
-    public int getCodUsuario() {
-        return codUsuario;
+    public int getCodUnidade() {
+        return codUnidade;
     }
 
     /**
-     * @param codUsuario the codUsuario to set
+     * @param codUnidade the codUnidade to set
      */
-    public void setCodUsuario(int codUsuario) {
-        this.codUsuario = codUsuario;
+    public void setCodUnidade(int codUnidade) {
+        this.codUnidade = codUnidade;
     }
 
     /**
@@ -207,4 +207,5 @@ public class ModelUnidade {
         this.tipo = tipo;
     }
 
+    
 }

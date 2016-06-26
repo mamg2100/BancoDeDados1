@@ -6,7 +6,14 @@
 package view;
 
 import controller.ConnectionDB;
+import controller.ControllerUnidade;
 import controller.ControllerUsuario;
+import controller.ModelTabela;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import model.ModelUnidade;
 import model.ModelUsuario;
 
 /**
@@ -14,16 +21,21 @@ import model.ModelUsuario;
  * @author 64033
  */
 public class JFrameUnidade extends javax.swing.JFrame {
-      ConnectionDB conecta = new ConnectionDB();
-      
-      ControllerUsuario usu = new ControllerUsuario();
-    
+
+    ConnectionDB conecta = new ConnectionDB();
+    ModelUnidade unidade = new ModelUnidade();
+    ControllerUnidade uni = new ControllerUnidade();
+
     /**
      * Creates new form JFrameUnidade
      */
     public JFrameUnidade() {
         initComponents();
         setDefaultCloseOperation(JFrameUnidade.HIDE_ON_CLOSE);
+
+        desabilitaCamposdeTexto();
+        conecta.conexao();
+        preencherTabela("select * from unidade order by Cod_unidade");
     }
 
     /**
@@ -44,8 +56,8 @@ public class JFrameUnidade extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        comboBoxUf = new javax.swing.JComboBox<>();
+        comboBoxTipo = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -102,12 +114,12 @@ public class JFrameUnidade extends javax.swing.JFrame {
 
         jLabel7.setText("Cidade");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO" }));
+        comboBoxUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alameda", "Área", "Avenida", "Campo", "Chácara", "Estrada", "Ladeira", "Loteamento", "Morro", "Parque", "Passarela", "Praça", "Quadra", "Rodovia", "Rua", "Travessa", "Via" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        comboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alameda", "Área", "Avenida", "Campo", "Chácara", "Estrada", "Ladeira", "Loteamento", "Morro", "Parque", "Passarela", "Praça", "Quadra", "Rodovia", "Rua", "Travessa", "Via" }));
+        comboBoxTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                comboBoxTipoActionPerformed(evt);
             }
         });
 
@@ -170,7 +182,7 @@ public class JFrameUnidade extends javax.swing.JFrame {
                             .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel1)
-                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(comboBoxTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtCodEndereco)
                                 .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5))
@@ -188,7 +200,7 @@ public class JFrameUnidade extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addGap(20, 20, 20)
                         .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboBoxUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
                         .addGap(14, 14, 14))))
         );
@@ -212,7 +224,7 @@ public class JFrameUnidade extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -232,7 +244,7 @@ public class JFrameUnidade extends javax.swing.JFrame {
                         .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                             .addComponent(jLabel8)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(comboBoxUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,6 +270,11 @@ public class JFrameUnidade extends javax.swing.JFrame {
         jPanelStart.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         buttonOk.setText("Ok");
+        buttonOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOkActionPerformed(evt);
+            }
+        });
 
         buttonCancela.setText("Cancela");
         buttonCancela.addActionListener(new java.awt.event.ActionListener() {
@@ -269,6 +286,11 @@ public class JFrameUnidade extends javax.swing.JFrame {
         buttonSair.setText("Sair");
 
         jRadioButtonNovo.setText("Novo");
+        jRadioButtonNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonNovoActionPerformed(evt);
+            }
+        });
 
         jRadioButtonAlterar.setText("Alterar");
 
@@ -431,9 +453,9 @@ public class JFrameUnidade extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void comboBoxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_comboBoxTipoActionPerformed
 
     private void txtCodigoFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoFiltroActionPerformed
         // TODO add your handling code here:
@@ -448,8 +470,85 @@ public class JFrameUnidade extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCidadeActionPerformed
 
     private void buttonCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelaActionPerformed
-        // TODO add your handling code here:
+        habilitaRdButtons();
+        LimpaCamposTexto();
+        desabilitaCamposdeTexto();
+        desmarcarRbButtons();
     }//GEN-LAST:event_buttonCancelaActionPerformed
+
+    private void buttonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkActionPerformed
+        unidade.setUnidade(txtUnidadeSetor.getText());
+        unidade.setEndereco(txtLogradouro.getText());
+        unidade.setNumero(txtNumero.getText());
+        unidade.setCidade(txtCidade.getText());
+        unidade.setCep(txtCep.getText());
+        unidade.setTelefone1(txtFone1.getText());
+        unidade.setTelefone2(txtFone2.getText());
+        unidade.setResponsavel(txtResponsavel.getText());
+        unidade.setFoneContato(txtCelular.getText());
+        unidade.setTipo(comboBoxTipo.getSelectedItem().toString());
+
+// TODO add your handling code here:
+        if (jRadioButtonNovo.isSelected()) {
+            uni.InserirUnidade(unidade);
+        } else if (jRadioButtonExcluir.isSelected()) {
+            if (!"".equals(txtCodEndereco.getText())) {
+                unidade.setCodUnidade(Integer.valueOf(txtCodEndereco.getText()));
+                uni.ExcluirUsuario(unidade);
+            } else {
+                JOptionPane.showMessageDialog(null, "Escolha na tabela o item a ser excluído.");
+            }
+        } else if (!"".equals(txtCodEndereco.getText())) {
+            unidade.setCodUnidade(Integer.valueOf(txtCodEndereco.getText()));
+            uni.AlterarUsuario(unidade);
+        } else {
+            JOptionPane.showMessageDialog(null, "Escolha na tabela o item a ser alterado.");
+        }
+    }//GEN-LAST:event_buttonOkActionPerformed
+
+    private void jRadioButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNovoActionPerformed
+        desabilitaRdButtons();
+        habilitaCamposdeTexto();  
+    }//GEN-LAST:event_jRadioButtonNovoActionPerformed
+    public void preencherTabela(String SQL) {
+
+        ArrayList dados = new ArrayList();
+        String[] colunas = new String[]{"Código", "Unidade", "Tipo", "Endereço", "Número", "Bairro", "Cidade", "UF", "Telefone1", "Telefone2", "Responsavel", "TelContato"};
+
+        conecta.executaSQL(SQL);
+
+        try {
+            conecta.rs.first();//"update usuario set Nome_usuario=?,Login_usuario=?,Senha_usuario=?,Setor_usuario=?,Email_usuario=?,Tipo_usuario=
+            do {
+                dados.add(new Object[]{conecta.rs.getInt("Cod_unidade"), conecta.rs.getString("Nome_unidade"), conecta.rs.getString("Tipo_unidade"), conecta.rs.getString("End_unidade"), conecta.rs.getString("Nr_endereco"), conecta.rs.getString("Bairro_unidade"), conecta.rs.getString("Cidade_unidade"), conecta.rs.getString("UF_unidade"), conecta.rs.getString("Fone1_unidade"), conecta.rs.getString("Fone2_unidade"), conecta.rs.getString("Resp_unidade"), conecta.rs.getString("Fone_contato")});
+            } while (conecta.rs.next());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Informação não encontrada.\n" + ex.getMessage());
+        }
+
+        //Criando a Tabela
+        ModelTabela modelo = new ModelTabela(dados, colunas);
+        jTableUnidade.setModel(modelo);
+        jTableUnidade.getColumnModel().getColumn(0).setPreferredWidth(120);
+        jTableUnidade.getColumnModel().getColumn(0).setResizable(false);
+        jTableUnidade.getColumnModel().getColumn(1).setPreferredWidth(120);
+        jTableUnidade.getColumnModel().getColumn(1).setResizable(false);
+        jTableUnidade.getColumnModel().getColumn(2).setPreferredWidth(120);
+        jTableUnidade.getColumnModel().getColumn(2).setResizable(false);
+        jTableUnidade.getColumnModel().getColumn(3).setPreferredWidth(120);
+        jTableUnidade.getColumnModel().getColumn(3).setResizable(false);
+        jTableUnidade.getColumnModel().getColumn(4).setPreferredWidth(120);
+        jTableUnidade.getColumnModel().getColumn(4).setResizable(false);
+        jTableUnidade.getColumnModel().getColumn(5).setPreferredWidth(120);
+        jTableUnidade.getColumnModel().getColumn(5).setResizable(false);
+        jTableUnidade.getColumnModel().getColumn(6).setPreferredWidth(120);
+        jTableUnidade.getColumnModel().getColumn(6).setResizable(false);
+        jTableUnidade.getColumnModel().getColumn(7).setPreferredWidth(120);
+        jTableUnidade.getColumnModel().getColumn(7).setResizable(false);
+        jTableUnidade.getTableHeader().setReorderingAllowed(false);
+        jTableUnidade.setAutoResizeMode(jTableUnidade.AUTO_RESIZE_OFF);
+        jTableUnidade.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }
 
     /**
      * @param args the command line arguments
@@ -490,8 +589,8 @@ public class JFrameUnidade extends javax.swing.JFrame {
     private javax.swing.JButton buttonCancela;
     private javax.swing.JButton buttonOk;
     private javax.swing.JButton buttonSair;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> comboBoxTipo;
+    private javax.swing.JComboBox<String> comboBoxUf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -534,4 +633,71 @@ public class JFrameUnidade extends javax.swing.JFrame {
     private javax.swing.JTextField txtUnidadeFiltro;
     private javax.swing.JTextField txtUnidadeSetor;
     // End of variables declaration//GEN-END:variables
+private void desabilitaRdButtons() {
+
+        jRadioButtonCodigo.setEnabled(false);
+        jRadioButtonNome.setEnabled(false);
+        jRadioButtonContato.setEnabled(false);
+
+    }
+
+    private void habilitaRdButtons() {
+        buttonOk.setEnabled(true);
+        buttonCancela.setEnabled(true);
+        buttonSair.setEnabled(true);
+    }
+
+    private void desabilitaCamposdeTexto() {
+        txtCodEndereco.setEnabled(false);
+        txtUnidadeSetor.setEnabled(false);
+        txtLogradouro.setEnabled(false);
+        txtNumero.setEnabled(false);
+        txtCidade.setEnabled(false);
+        txtCep.setEnabled(false);
+        txtFone1.setEnabled(false);
+        txtFone2.setEnabled(false);
+        txtResponsavel.setEnabled(false);
+        txtCelular.setEnabled(false);
+        comboBoxTipo.setEnabled(false);
+        comboBoxUf.setEnabled(false);
+    }
+
+    private void habilitaCamposdeTexto() {
+
+        txtCodEndereco.setEnabled(true);
+        txtUnidadeSetor.setEnabled(true);
+        txtLogradouro.setEnabled(true);
+        txtNumero.setEnabled(true);
+        txtCidade.setEnabled(true);
+        txtCep.setEnabled(true);
+        txtFone1.setEnabled(true);
+        txtFone2.setEnabled(true);
+        txtResponsavel.setEnabled(true);
+        txtCelular.setEnabled(true);
+        comboBoxTipo.setEnabled(true);
+        comboBoxUf.setEnabled(true);
+    }
+
+    private void LimpaCamposTexto() {
+
+        txtCodEndereco.setText("");
+        txtUnidadeSetor.setText("");
+        txtLogradouro.setText("");
+        txtNumero.setText("");
+        txtCidade.setText("");
+        txtCep.setText("");
+        txtFone1.setText("");
+        txtFone2.setText("");
+        txtResponsavel.setText("");
+        txtCelular.setText("");
+
+    }
+
+    private void desmarcarRbButtons() {
+
+        jRadioButtonCodigo.setSelected(false);
+        jRadioButtonNome.setSelected(false);
+        jRadioButtonContato.setSelected(false);
+    }
+
 }
