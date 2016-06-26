@@ -27,13 +27,14 @@ public class ControllerUnidade {
             pst.setString(1, unidade.getUnidade());
             pst.setString(2, unidade.getTipo());
             pst.setString(3, unidade.getEndereco());
-            pst.setString(4, unidade.getBairro());
-            pst.setString(5, unidade.getCidade());
-            pst.setString(6, unidade.getUfUnidade());
-            pst.setString(7, unidade.getTelefone1());
-            pst.setString(8, unidade.getTelefone2());
-            pst.setString(9, unidade.getResponsavel());
-            pst.setString(10, unidade.getFoneContato());
+            pst.setString(4, unidade.getNumero());
+            pst.setString(5, unidade.getBairro());
+            pst.setString(6, unidade.getCidade());
+            pst.setString(7, unidade.getUfUnidade());
+            pst.setString(8, unidade.getTelefone1());
+            pst.setString(9, unidade.getTelefone2());
+            pst.setString(10, unidade.getResponsavel());
+            pst.setString(11, unidade.getFoneContato());
             pst.execute();
             JOptionPane.showMessageDialog(null, "Inserção feita com sucesso ");
             // testando passagem de parâmetros
