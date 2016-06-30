@@ -6,7 +6,16 @@
 package view;
 
 import com.jgoodies.looks.plastic.PlasticLookAndFeel;
+import com.jgoodies.looks.plastic.md;
+import com.jgoodies.looks.plastic.theme.BrownSugar;
+import com.jgoodies.looks.plastic.theme.DarkStar;
+import com.jgoodies.looks.plastic.theme.DesertBlue;
+import com.jgoodies.looks.plastic.theme.ExperienceBlue;
 import com.jgoodies.looks.plastic.theme.ExperienceRoyale;
+import com.jgoodies.looks.plastic.theme.InvertedColorTheme;
+import com.jgoodies.looks.plastic.theme.Silver;
+import com.jgoodies.looks.plastic.theme.SkyBlue;
+import com.jgoodies.looks.plastic.theme.SkyBluer;
 import controller.ConnectionDB;
 import java.awt.SystemColor;
 import java.util.logging.Level;
@@ -31,8 +40,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
         initComponents();
         conexao.conexao();// 
         
-        // conecta.conexao();
-        
+        // conecta.conexao();     
+                
     }
 
     /**
@@ -49,6 +58,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuRim = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         menuCadastro = new javax.swing.JMenu();
         menuItemUsuario = new javax.swing.JMenuItem();
@@ -83,6 +93,19 @@ public class JFramePrincipal extends javax.swing.JFrame {
         menuRim.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         menuRim.setText("Requisições");
         menuRim.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        menuRim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRimActionPerformed(evt);
+            }
+        });
+
+        jMenuItem2.setText("RIM | RRP");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        menuRim.add(jMenuItem2);
 
         jMenuItem1.setText("Sair");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -205,7 +228,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         //Silver()
         //ExperienceRoyale()
         try {
-            PlasticLookAndFeel.setPlasticTheme(new ExperienceRoyale());
+            PlasticLookAndFeel.setPlasticTheme(new DarkStar());
             try {
                 UIManager.setLookAndFeel("com.jgoodies.looks.plastic.Plastic3DLookAndFeel");
             } catch (InstantiationException ex) {
@@ -229,16 +252,24 @@ public class JFramePrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFrameUsuario formusuario = new JFrameUsuario();
         formusuario.setVisible(true);
-       
-        
     }//GEN-LAST:event_menuItemUsuarioActionPerformed
 
     private void menuItemUnidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemUnidadeActionPerformed
         // TODO add your handling code here:
         JFrameUnidade formunidade = new JFrameUnidade();
         formunidade.setVisible(true);
-       
     }//GEN-LAST:event_menuItemUnidadeActionPerformed
+
+    private void menuRimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRimActionPerformed
+        
+        
+    }//GEN-LAST:event_menuRimActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        JFrameRim rim = new JFrameRim();
+        rim.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,6 +313,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu menuAjuda;
     private javax.swing.JMenu menuAuditoria;
     private javax.swing.JMenu menuCadastro;
