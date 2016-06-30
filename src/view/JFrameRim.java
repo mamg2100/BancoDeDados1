@@ -216,12 +216,9 @@ public class JFrameRim extends javax.swing.JFrame {
             }
         });
 
-        txtUnidadePesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtUnidadePesquisaKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtUnidadePesquisaKeyReleased(evt);
+        txtUnidadePesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUnidadePesquisaActionPerformed(evt);
             }
         });
 
@@ -270,6 +267,11 @@ public class JFrameRim extends javax.swing.JFrame {
         lblPesquisa.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         lblPesquisa.setText("Pesquisa");
 
+        txtDescricaoPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescricaoPesquisaActionPerformed(evt);
+            }
+        });
         txtDescricaoPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtDescricaoPesquisaKeyPressed(evt);
@@ -813,7 +815,7 @@ public class JFrameRim extends javax.swing.JFrame {
         jPanel3.add(lblCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 34, 50, 25));
 
         rbRim.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        rbRim.setForeground(new java.awt.Color(204, 0, 0));
+        rbRim.setForeground(new java.awt.Color(255, 255, 255));
         rbRim.setText("RIM");
         rbRim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -823,7 +825,7 @@ public class JFrameRim extends javax.swing.JFrame {
         jPanel3.add(rbRim, new org.netbeans.lib.awtextra.AbsoluteConstraints(448, 69, -1, -1));
 
         rbRrp.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        rbRrp.setForeground(new java.awt.Color(204, 0, 0));
+        rbRrp.setForeground(new java.awt.Color(255, 255, 255));
         rbRrp.setText("RRP");
         rbRrp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -920,17 +922,17 @@ public class JFrameRim extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
-                .addComponent(jCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jCalendar, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jCalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jCalendar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1480,17 +1482,7 @@ public class JFrameRim extends javax.swing.JFrame {
         //txtDescricaoPesquisa.setText(txtDescricaoPesquisa.getText().toUpperCase());
                     
        // if (evt.getKeyCode() == evt.VK_ENTER) {
-            preencherTabela("Select * from rim order by cod_rim");
-            //habilitaCamposdeTexto();
-            String pesquisadescricao = txtDescricaoPesquisa.getText().toUpperCase();
-            if (pesquisadescricao.length() > 0) {
-                for (int i = 0; i < jTableRim.getRowCount(); i++) {
-                    if (!pesquisadescricao.equals(jTableRim.getValueAt(i, 2).toString())) {
-                    } else {
-                        preencherTabela("Select * From rim where descricao like '%" + pesquisadescricao + "%'");
-                    }
-                }
-            }
+            
         //}
     }//GEN-LAST:event_txtDescricaoPesquisaKeyPressed
 
@@ -1544,8 +1536,24 @@ public class JFrameRim extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtProcessoContabilPesquisaKeyPressed
 
-    private void txtUnidadePesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnidadePesquisaKeyPressed
+    private void txtDescricaoPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoPesquisaActionPerformed
         
+            preencherTabela("Select * from rim order by cod_rim");
+            //habilitaCamposdeTexto();
+            String pesquisadescricao = txtDescricaoPesquisa.getText().toUpperCase();
+            if (pesquisadescricao.length() > 0) {
+                for (int i = 0; i < jTableRim.getRowCount(); i++) {
+                    if (!pesquisadescricao.equals(jTableRim.getValueAt(i, 2).toString())) {
+                    } else {
+                        preencherTabela("Select * From rim where descricao LIKE '%" + pesquisadescricao + "%';");
+                    }
+                }
+            }
+    }//GEN-LAST:event_txtDescricaoPesquisaActionPerformed
+
+    private void txtUnidadePesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnidadePesquisaActionPerformed
+        // TODO add your handling code here:
+                
         preencherTabela("Select * from rim order by cod_rim");
         habilitaCamposdeTexto();
         String pesquisaporunidade = txtUnidadePesquisa.getText().toUpperCase();
@@ -1554,15 +1562,13 @@ public class JFrameRim extends javax.swing.JFrame {
             for (int i = 0; i < jTableRim.getRowCount(); i++) {
                 if (!pesquisaporunidade.equals(jTableRim.getValueAt(i, 1).toString())) {
                 } else {
-                    preencherTabela("Select * From rim where Nome_Unidade LIKE '%" + pesquisaporunidade +"%'");
+                    preencherTabela("Select * From rim where Nome_Unidade LIKE '%" + txtUnidadePesquisa.getText().toUpperCase() +"%'");
                 }
             }
         }
-    }//GEN-LAST:event_txtUnidadePesquisaKeyPressed
-
-    private void txtUnidadePesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnidadePesquisaKeyReleased
-        
-    }//GEN-LAST:event_txtUnidadePesquisaKeyReleased
+        JOptionPane.showMessageDialog(null, pesquisaporunidade);
+                
+    }//GEN-LAST:event_txtUnidadePesquisaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1783,13 +1789,14 @@ public class JFrameRim extends javax.swing.JFrame {
                     conecta.rs.getString("Atendida"),
                     conecta.rs.getString("Concluida"),
                     conecta.rs.getInt("Cd_usuario"),
-                    conecta.rs.getInt("Cd_unidade"),});
+                    conecta.rs.getInt("Cd_unidade")});
 
             } while (conecta.rs.next());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Informação não encontrada.\n" + ex.getMessage());
         }
 
+              
         //Criando a Tabela
         ModelTabela modelo = new ModelTabela(dados, colunas);
         jTableRim.setModel(modelo);
@@ -1879,6 +1886,8 @@ public class JFrameRim extends javax.swing.JFrame {
 
         jTableRim.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+        
+        
     }
 
     private void desabilitaCamposdeTexto() {
