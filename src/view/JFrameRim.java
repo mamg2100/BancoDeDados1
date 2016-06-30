@@ -9,6 +9,7 @@ import controller.ConnectionDB;
 import controller.ControllerRim;
 import controller.ModelTabela;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -212,6 +213,15 @@ public class JFrameRim extends javax.swing.JFrame {
         txtCodigoPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoPesquisaKeyPressed(evt);
+            }
+        });
+
+        txtUnidadePesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUnidadePesquisaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtUnidadePesquisaKeyReleased(evt);
             }
         });
 
@@ -1458,41 +1468,34 @@ public class JFrameRim extends javax.swing.JFrame {
         if (pesquisaporcodigorim.length() > 0) {
             for (int i = 0; i < jTableRim.getRowCount(); i++) {
                 if (!pesquisaporcodigorim.equals(jTableRim.getValueAt(i, 0).toString())) {
-                    // preencherTabela("Select * From dotacao where despesa=''");
                 } else {
-                    //JOptionPane.showMessageDialog(null,jTableDespesa.getValueAt(i, 0).toString() );
-                    //txtCodigo.setText(jTableDespesa.getValueAt(i, 0).toString());
-                    //txtDespesa.setText(jTableDespesa.getValueAt(i, 1).toString());
-                    //txtReduzida.setText(jTableDespesa.getValueAt(i, 2).toString());
-                    //txtPrograma.setText(jTableDespesa.getValueAt(i, 3).toString());
-                    //txtAplicacao.setText(jTableDespesa.getValueAt(i, 4).toString());
                     preencherTabela("Select * From rim where Cod_rim='" + pesquisaporcodigorim + "'");
                 }
             }
         }
-
     }//GEN-LAST:event_txtCodigoPesquisaKeyPressed
 
     private void txtDescricaoPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescricaoPesquisaKeyPressed
 
-        preencherTabela("Select * from rim order by cod_rim");
-        //habilitaCamposdeTexto();
-        String pesquisadescricao = txtDescricaoPesquisa.getText();
-        JOptionPane.showMessageDialog(null, pesquisadescricao);
-
-        if (pesquisadescricao.length() > 0) {
-            for (int i = 0; i < jTableRim.getRowCount(); i++) {
-                if (!pesquisadescricao.equals(jTableRim.getValueAt(i, 2).toString())) {
-                } else {
-                    preencherTabela("Select * From rim where descricao like '%" + pesquisadescricao + "%'");
+        //txtDescricaoPesquisa.setText(txtDescricaoPesquisa.getText().toUpperCase());
+                    
+       // if (evt.getKeyCode() == evt.VK_ENTER) {
+            preencherTabela("Select * from rim order by cod_rim");
+            //habilitaCamposdeTexto();
+            String pesquisadescricao = txtDescricaoPesquisa.getText().toUpperCase();
+            if (pesquisadescricao.length() > 0) {
+                for (int i = 0; i < jTableRim.getRowCount(); i++) {
+                    if (!pesquisadescricao.equals(jTableRim.getValueAt(i, 2).toString())) {
+                    } else {
+                        preencherTabela("Select * From rim where descricao like '%" + pesquisadescricao + "%'");
+                    }
                 }
             }
-        }
-
+        //}
     }//GEN-LAST:event_txtDescricaoPesquisaKeyPressed
 
     private void txtCetilPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCetilPesquisaKeyPressed
-        
+
         preencherTabela("Select * from rim order by cod_rim");
         habilitaCamposdeTexto();
         String pesquisaporetil = txtCetilPesquisa.getText();
@@ -1500,23 +1503,15 @@ public class JFrameRim extends javax.swing.JFrame {
         if (pesquisaporetil.length() > 0) {
             for (int i = 0; i < jTableRim.getRowCount(); i++) {
                 if (!pesquisaporetil.equals(jTableRim.getValueAt(i, 5).toString())) {
-                    // preencherTabela("Select * From dotacao where despesa=''");
                 } else {
-                    //JOptionPane.showMessageDialog(null,jTableDespesa.getValueAt(i, 0).toString() );
-                    //txtCodigo.setText(jTableDespesa.getValueAt(i, 0).toString());
-                    //txtDespesa.setText(jTableDespesa.getValueAt(i, 1).toString());
-                    //txtReduzida.setText(jTableDespesa.getValueAt(i, 2).toString());
-                    //txtPrograma.setText(jTableDespesa.getValueAt(i, 3).toString());
-                    //txtAplicacao.setText(jTableDespesa.getValueAt(i, 4).toString());
                     preencherTabela("Select * From rim where cetil='" + pesquisaporetil + "'");
                 }
             }
         }
-        
     }//GEN-LAST:event_txtCetilPesquisaKeyPressed
 
     private void txtProcessoPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProcessoPesquisaKeyPressed
-        
+
         // TODO add your handling code here:
         preencherTabela("Select * from rim order by cod_rim");
         habilitaCamposdeTexto();
@@ -1525,25 +1520,16 @@ public class JFrameRim extends javax.swing.JFrame {
         if (pesquisaporcodigoprocesso.length() > 0) {
             for (int i = 0; i < jTableRim.getRowCount(); i++) {
                 if (!pesquisaporcodigoprocesso.equals(jTableRim.getValueAt(i, 10).toString())) {
-                    // preencherTabela("Select * From dotacao where despesa=''");
                 } else {
-                    //JOptionPane.showMessageDialog(null,jTableDespesa.getValueAt(i, 0).toString() );
-                    //txtCodigo.setText(jTableDespesa.getValueAt(i, 0).toString());
-                    //txtDespesa.setText(jTableDespesa.getValueAt(i, 1).toString());
-                    //txtReduzida.setText(jTableDespesa.getValueAt(i, 2).toString());
-                    //txtPrograma.setText(jTableDespesa.getValueAt(i, 3).toString());
-                    //txtAplicacao.setText(jTableDespesa.getValueAt(i, 4).toString());
                     preencherTabela("Select * From rim where Processo='" + pesquisaporcodigoprocesso + "'");
                 }
             }
         }
-
     }//GEN-LAST:event_txtProcessoPesquisaKeyPressed
 
     private void txtProcessoContabilPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProcessoContabilPesquisaKeyPressed
-        
+
 // TODO add your handling code here:
-        
         preencherTabela("Select * from rim order by cod_rim");
         habilitaCamposdeTexto();
         String pesquisaporcodigoprocessocontabil = txtProcessoContabilPesquisa.getText();
@@ -1551,21 +1537,32 @@ public class JFrameRim extends javax.swing.JFrame {
         if (pesquisaporcodigoprocessocontabil.length() > 0) {
             for (int i = 0; i < jTableRim.getRowCount(); i++) {
                 if (!pesquisaporcodigoprocessocontabil.equals(jTableRim.getValueAt(i, 12).toString())) {
-                    // preencherTabela("Select * From dotacao where despesa=''");
-                    
                 } else {
-                    //JOptionPane.showMessageDialog(null,jTableDespesa.getValueAt(i, 0).toString() );
-                    //txtCodigo.setText(jTableDespesa.getValueAt(i, 0).toString());
-                    //txtDespesa.setText(jTableDespesa.getValueAt(i, 1).toString());
-                    //txtReduzida.setText(jTableDespesa.getValueAt(i, 2).toString());
-                    //txtPrograma.setText(jTableDespesa.getValueAt(i, 3).toString());
-                    //txtAplicacao.setText(jTableDespesa.getValueAt(i, 4).toString());
                     preencherTabela("Select * From rim where ProcessoContabil='" + pesquisaporcodigoprocessocontabil + "'");
                 }
             }
         }
-
     }//GEN-LAST:event_txtProcessoContabilPesquisaKeyPressed
+
+    private void txtUnidadePesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnidadePesquisaKeyPressed
+        
+        preencherTabela("Select * from rim order by cod_rim");
+        habilitaCamposdeTexto();
+        String pesquisaporunidade = txtUnidadePesquisa.getText().toUpperCase();
+
+        if (pesquisaporunidade.length() > 0) {
+            for (int i = 0; i < jTableRim.getRowCount(); i++) {
+                if (!pesquisaporunidade.equals(jTableRim.getValueAt(i, 1).toString())) {
+                } else {
+                    preencherTabela("Select * From rim where Nome_Unidade LIKE '%" + pesquisaporunidade +"%'");
+                }
+            }
+        }
+    }//GEN-LAST:event_txtUnidadePesquisaKeyPressed
+
+    private void txtUnidadePesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnidadePesquisaKeyReleased
+        
+    }//GEN-LAST:event_txtUnidadePesquisaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -1792,7 +1789,7 @@ public class JFrameRim extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Informação não encontrada.\n" + ex.getMessage());
         }
-        
+
         //Criando a Tabela
         ModelTabela modelo = new ModelTabela(dados, colunas);
         jTableRim.setModel(modelo);
@@ -1881,8 +1878,8 @@ public class JFrameRim extends javax.swing.JFrame {
         jTableRim.setAutoResizeMode(jTableRim.AUTO_RESIZE_OFF);
 
         jTableRim.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
-}
+
+    }
 
     private void desabilitaCamposdeTexto() {
 
