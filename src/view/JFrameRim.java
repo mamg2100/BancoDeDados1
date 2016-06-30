@@ -221,6 +221,18 @@ public class JFrameRim extends javax.swing.JFrame {
             }
         });
 
+        txtProcessoPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtProcessoPesquisaKeyPressed(evt);
+            }
+        });
+
+        txtProcessoContabilPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtProcessoContabilPesquisaKeyPressed(evt);
+            }
+        });
+
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel1.setText("Ano");
 
@@ -1463,10 +1475,10 @@ public class JFrameRim extends javax.swing.JFrame {
 
     private void txtDescricaoPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescricaoPesquisaKeyPressed
 
-        //preencherTabela("Select * from rim order by cod_rim");
+        preencherTabela("Select * from rim order by cod_rim");
         //habilitaCamposdeTexto();
         String pesquisadescricao = txtDescricaoPesquisa.getText();
-        //JOptionPane.showMessageDialog(null, pesquisadescricao);
+        JOptionPane.showMessageDialog(null, pesquisadescricao);
 
         if (pesquisadescricao.length() > 0) {
             for (int i = 0; i < jTableRim.getRowCount(); i++) {
@@ -1502,6 +1514,58 @@ public class JFrameRim extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_txtCetilPesquisaKeyPressed
+
+    private void txtProcessoPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProcessoPesquisaKeyPressed
+        
+        // TODO add your handling code here:
+        preencherTabela("Select * from rim order by cod_rim");
+        habilitaCamposdeTexto();
+        String pesquisaporcodigoprocesso = txtProcessoPesquisa.getText();
+
+        if (pesquisaporcodigoprocesso.length() > 0) {
+            for (int i = 0; i < jTableRim.getRowCount(); i++) {
+                if (!pesquisaporcodigoprocesso.equals(jTableRim.getValueAt(i, 10).toString())) {
+                    // preencherTabela("Select * From dotacao where despesa=''");
+                } else {
+                    //JOptionPane.showMessageDialog(null,jTableDespesa.getValueAt(i, 0).toString() );
+                    //txtCodigo.setText(jTableDespesa.getValueAt(i, 0).toString());
+                    //txtDespesa.setText(jTableDespesa.getValueAt(i, 1).toString());
+                    //txtReduzida.setText(jTableDespesa.getValueAt(i, 2).toString());
+                    //txtPrograma.setText(jTableDespesa.getValueAt(i, 3).toString());
+                    //txtAplicacao.setText(jTableDespesa.getValueAt(i, 4).toString());
+                    preencherTabela("Select * From rim where Processo='" + pesquisaporcodigoprocesso + "'");
+                }
+            }
+        }
+
+    }//GEN-LAST:event_txtProcessoPesquisaKeyPressed
+
+    private void txtProcessoContabilPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProcessoContabilPesquisaKeyPressed
+        
+// TODO add your handling code here:
+        
+        preencherTabela("Select * from rim order by cod_rim");
+        habilitaCamposdeTexto();
+        String pesquisaporcodigoprocessocontabil = txtProcessoContabilPesquisa.getText();
+
+        if (pesquisaporcodigoprocessocontabil.length() > 0) {
+            for (int i = 0; i < jTableRim.getRowCount(); i++) {
+                if (!pesquisaporcodigoprocessocontabil.equals(jTableRim.getValueAt(i, 12).toString())) {
+                    // preencherTabela("Select * From dotacao where despesa=''");
+                    
+                } else {
+                    //JOptionPane.showMessageDialog(null,jTableDespesa.getValueAt(i, 0).toString() );
+                    //txtCodigo.setText(jTableDespesa.getValueAt(i, 0).toString());
+                    //txtDespesa.setText(jTableDespesa.getValueAt(i, 1).toString());
+                    //txtReduzida.setText(jTableDespesa.getValueAt(i, 2).toString());
+                    //txtPrograma.setText(jTableDespesa.getValueAt(i, 3).toString());
+                    //txtAplicacao.setText(jTableDespesa.getValueAt(i, 4).toString());
+                    preencherTabela("Select * From rim where ProcessoContabil='" + pesquisaporcodigoprocessocontabil + "'");
+                }
+            }
+        }
+
+    }//GEN-LAST:event_txtProcessoContabilPesquisaKeyPressed
 
     /**
      * @param args the command line arguments
