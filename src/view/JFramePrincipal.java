@@ -57,9 +57,17 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        jFrame1 = new javax.swing.JFrame();
+        jPanel1 = new javax.swing.JPanel();
+        buttonMenuReq = new javax.swing.JButton();
+        ButtonMenuDespesa = new javax.swing.JButton();
+        buttonMenuUnidade = new javax.swing.JButton();
+        buttonMenuUsuario = new javax.swing.JButton();
+        buttonMenuSair = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuRim = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem1 = new javax.swing.JMenuItem();
         menuCadastro = new javax.swing.JMenu();
         menuItemUsuario = new javax.swing.JMenuItem();
@@ -81,14 +89,69 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jMenu3.setText("jMenu3");
 
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SISPRORIM - Sistema de Protocolo de Requisições");
+        setBackground(new java.awt.Color(0, 51, 204));
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        buttonMenuReq.setToolTipText("Cadastro de Requisições");
+        buttonMenuReq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMenuReqActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buttonMenuReq, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 35, 35));
+
+        ButtonMenuDespesa.setToolTipText("Cadastro de Despesas");
+        ButtonMenuDespesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonMenuDespesaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButtonMenuDespesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 2, 35, 35));
+
+        buttonMenuUnidade.setToolTipText("Cadastro de Unidades");
+        buttonMenuUnidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMenuUnidadeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buttonMenuUnidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 2, 35, 35));
+
+        buttonMenuUsuario.setToolTipText("Cadastro de Usuários");
+        buttonMenuUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMenuUsuarioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buttonMenuUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 2, 35, 35));
+
+        buttonMenuSair.setToolTipText("Sair");
+        buttonMenuSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMenuSairActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buttonMenuSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 2, 35, 35));
 
         jMenuBar1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
@@ -108,6 +171,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         menuRim.add(jMenuItem2);
+        menuRim.add(jSeparator1);
 
         jMenuItem1.setText("Sair");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -196,11 +260,16 @@ public class JFramePrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1117, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(896, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 695, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 296, Short.MAX_VALUE))
         );
 
         pack();
@@ -273,6 +342,36 @@ public class JFramePrincipal extends javax.swing.JFrame {
         rim.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void buttonMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuSairActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_buttonMenuSairActionPerformed
+
+    private void buttonMenuReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuReqActionPerformed
+        // TODO add your handling code here:
+        JFrameRim rim = new JFrameRim();
+        rim.setVisible(true);   
+    }//GEN-LAST:event_buttonMenuReqActionPerformed
+
+    private void ButtonMenuDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonMenuDespesaActionPerformed
+        // TODO add your handling code here:
+        JFrameDespesa formdespesa = new JFrameDespesa();
+        formdespesa.setVisible(true);
+        
+    }//GEN-LAST:event_ButtonMenuDespesaActionPerformed
+
+    private void buttonMenuUnidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuUnidadeActionPerformed
+        // TODO add your handling code here:
+        JFrameUnidade formunidade = new JFrameUnidade();
+        formunidade.setVisible(true);
+    }//GEN-LAST:event_buttonMenuUnidadeActionPerformed
+
+    private void buttonMenuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuUsuarioActionPerformed
+        // TODO add your handling code here:
+        JFrameUsuario formusuario = new JFrameUsuario();
+        formusuario.setVisible(true);
+    }//GEN-LAST:event_buttonMenuUsuarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -299,6 +398,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(JFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
         
               
         /* Create and display the form */
@@ -310,12 +410,20 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonMenuDespesa;
+    private javax.swing.JButton buttonMenuReq;
+    private javax.swing.JButton buttonMenuSair;
+    private javax.swing.JButton buttonMenuUnidade;
+    private javax.swing.JButton buttonMenuUsuario;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenu menuAjuda;
     private javax.swing.JMenu menuAuditoria;
     private javax.swing.JMenu menuCadastro;
