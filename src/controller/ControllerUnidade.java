@@ -14,8 +14,13 @@ import javax.swing.JOptionPane;
  * @author jodosom
  */
 public class ControllerUnidade {
+
     ConnectionDB conecta = new ConnectionDB();
-    
+
+    /**
+     *
+     * @param unidade
+     */
     public void InserirUnidade(model.ModelUnidade unidade) {
 
         conecta.conexao();
@@ -40,55 +45,77 @@ public class ControllerUnidade {
             // testando passagem de parâmetros
             //JOptionPane.showMessageDialog(null, despesa.getDespesa());
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Erro na inserção dos dados: " + ex);
+            JOptionPane.showMessageDialog(null, "Erro na inserção dos dados: " + ex);
         }
 
         conecta.desconectar();
 
     }
-    
-     public void ExcluirUsuario(model.ModelUnidade unidade) {
 
-       conecta.conexao();
+    /**
+     *
+     * @param unidade
+     */
+    public void ExcluirUnidade(model.ModelUnidade unidade) {
+
+        conecta.conexao();
 
         try {
             PreparedStatement pst = conecta.conn.prepareStatement("delete from unidade where Cod_unidade=?");
             pst.setInt(1, (unidade.getCodUnidade()));
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Usuario de codigo: " + unidade.getUnidade()+ " excluída com sucesso!");
+            JOptionPane.showMessageDialog(null, "Usuario de codigo: " + unidade.getUnidade() + " excluída com sucesso!");
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Dados não excluídos!"+ex);
+            JOptionPane.showMessageDialog(null, "Dados não excluídos!" + ex);
         }
-       
+
         conecta.desconectar();
     }
-     
-     public void AlterarUsuario (model.ModelUnidade unidade){
-    
+
+    /**
+     *
+     * @param unidade
+     */
+    public void AlterarUnidade(model.ModelUnidade unidade) {
+
         try {
             conecta.conexao();
-            PreparedStatement pst = conecta.conn.prepareStatement("update unidade set Nome_unidade=?,Tipo_unidade=?,End_unidade=?,Nr_endereco=?,Bairro_unidade=?,Cidade_unidade=?, UF_unidade=?,Fone1_unidade=?, Fone2_unidade=?, Resp_unidade=?, Fone_contato where Cod_unidade=? ");
-                                            //"INSERT INTO usuario (Nome_usuario,Login_usuario,Senha_usuario,Setor_usuario,Email_usuario)VALUES(?,?,?,?,?)");
+            PreparedStatement pst = conecta.conn.prepareStatement("update unidade set "
+                    + "Nome_unidade=?,"
+                    + "Tipo_unidade=?,"
+                    + "End_unidade=?,"
+                    + "Nr_endereco=?,"
+                    + "Bairro_unidade=?,"
+                    + "Cidade_unidade=?, "
+                    + "UF_unidade=?,"
+                    + "Fone1_unidade=?, "
+                    + "Fone2_unidade=?, "
+                    + "Resp_unidade=?, "
+                    + "Fone_contato=?"
+                    + "where Cod_unidade=? ");
+
             pst.setString(1, unidade.getUnidade());
             pst.setString(2, unidade.getTipo());
             pst.setString(3, unidade.getEndereco());
-            pst.setString(4, unidade.getBairro());
-            pst.setString(5, unidade.getCidade());
-            pst.setString(6, unidade.getUfUnidade());
-            pst.setString(7, unidade.getTelefone1());
-            pst.setString(8, unidade.getTelefone2());
-            pst.setString(9, unidade.getResponsavel());
-            pst.setString(10,unidade.getFoneContato());
-            
+            pst.setString(4, unidade.getNumero());
+            pst.setString(5, unidade.getBairro());
+            pst.setString(6, unidade.getCidade());
+            pst.setString(7, unidade.getUfUnidade());
+            pst.setString(8, unidade.getTelefone1());
+            pst.setString(9, unidade.getTelefone2());
+            pst.setString(10, unidade.getResponsavel());
+            pst.setString(11, unidade.getFoneContato());
+            pst.setInt(12, unidade.getCodUnidade());
+
             pst.execute();
-                
-            JOptionPane.showMessageDialog(null, "Usuario de codigo: " + unidade.getUnidade()+ " alterada com sucesso!");
+
+            JOptionPane.showMessageDialog(null, "Usuario de codigo: " + unidade.getUnidade() + " alterada com sucesso!");
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Dados não foram atualizados!"+ex);
-        }  
-    
-    }   
+            JOptionPane.showMessageDialog(null, "Dados não foram atualizados!\n" + ex.getMessage());
+        }
+
+    }
 
 }

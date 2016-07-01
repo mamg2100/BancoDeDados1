@@ -137,6 +137,7 @@ public class JFrameRim extends javax.swing.JFrame {
         buttonExcluir = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
         buttonSair = new javax.swing.JButton();
+        buttonRefresh = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         txtCetil = new javax.swing.JTextField();
         txtDataCetil = new javax.swing.JTextField();
@@ -504,6 +505,15 @@ public class JFrameRim extends javax.swing.JFrame {
             }
         });
 
+        buttonRefresh.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        buttonRefresh.setText("Refresh");
+        buttonRefresh.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        buttonRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -513,8 +523,9 @@ public class JFrameRim extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rbExcluir)
                     .addComponent(rbNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rbAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                    .addComponent(rbAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -543,7 +554,9 @@ public class JFrameRim extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addComponent(rbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1767,6 +1780,11 @@ public class JFrameRim extends javax.swing.JFrame {
         txtCetilPesquisa.setText("");
     }//GEN-LAST:event_txtProcessoContabilPesquisaFocusGained
 
+    private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
+        // TODO add your handling code here:
+        preencherTabela("Select * FROM rim order by Cod_rim");
+    }//GEN-LAST:event_buttonRefreshActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1793,6 +1811,7 @@ public class JFrameRim extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(JFrameRim.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1810,6 +1829,7 @@ public class JFrameRim extends javax.swing.JFrame {
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonOK;
     private javax.swing.JButton buttonPesquisar;
+    private javax.swing.JButton buttonRefresh;
     private javax.swing.JButton buttonSair;
     private javax.swing.JComboBox cmbCadastrante;
     private javax.swing.JComboBox cmbUnidade;

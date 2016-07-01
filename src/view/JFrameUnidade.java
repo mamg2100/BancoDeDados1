@@ -26,7 +26,7 @@ public class JFrameUnidade extends javax.swing.JFrame {
     ConnectionDB conecta = new ConnectionDB();
     ModelUnidade unidade = new ModelUnidade();
     ControllerUnidade uni = new ControllerUnidade();
-
+    int flagUnidade= 0;
     /**
      * Creates new form JFrameUnidade
      */
@@ -58,15 +58,15 @@ public class JFrameUnidade extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         comboBoxUf = new javax.swing.JComboBox<>();
-        comboBoxTipo = new javax.swing.JComboBox<>();
+        cmbTipo = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        txtCodEndereco = new javax.swing.JTextField();
-        txtUnidadeSetor = new javax.swing.JTextField();
+        txtCodUnidade = new javax.swing.JTextField();
+        txtNomeUnidade = new javax.swing.JTextField();
         txtLogradouro = new javax.swing.JTextField();
         txtNumero = new javax.swing.JTextField();
         txtBairro = new javax.swing.JTextField();
@@ -77,17 +77,20 @@ public class JFrameUnidade extends javax.swing.JFrame {
         txtCelular = new javax.swing.JTextField();
         txtFone2 = new javax.swing.JTextField();
         jPanelStart = new javax.swing.JPanel();
-        buttonOk = new javax.swing.JButton();
-        buttonCancela = new javax.swing.JButton();
+        buttonOK = new javax.swing.JButton();
+        buttonCancelar = new javax.swing.JButton();
         buttonSair = new javax.swing.JButton();
-        jRadioButtonNovo = new javax.swing.JRadioButton();
-        jRadioButtonAlterar = new javax.swing.JRadioButton();
-        jRadioButtonExcluir = new javax.swing.JRadioButton();
+        rbNovo = new javax.swing.JRadioButton();
+        rbAlterar = new javax.swing.JRadioButton();
+        rbExcluir = new javax.swing.JRadioButton();
+        ButtonRefresh = new javax.swing.JButton();
         jPanelFiltros = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        txtUnidadeFiltro = new javax.swing.JTextField();
-        txtCodigoFiltro = new javax.swing.JTextField();
+        txtUnidadePesquisa = new javax.swing.JTextField();
+        txtCodigoPesquisa = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
+        buttonPesquisaUnidade = new javax.swing.JButton();
+        buttonRefresh = new javax.swing.JButton();
         jPanelOrdenacao = new javax.swing.JPanel();
         jRadioButtonCodigo = new javax.swing.JRadioButton();
         jRadioButtonNome = new javax.swing.JRadioButton();
@@ -98,6 +101,7 @@ public class JFrameUnidade extends javax.swing.JFrame {
         jRadioButton1.setText("jRadioButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Movimentação e Pesquisa de Unidades");
 
         jPanelEndereco.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -117,10 +121,10 @@ public class JFrameUnidade extends javax.swing.JFrame {
 
         comboBoxUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO" }));
 
-        comboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alameda", "Área", "Avenida", "Campo", "Chácara", "Estrada", "Ladeira", "Loteamento", "Morro", "Parque", "Passarela", "Praça", "Quadra", "Rodovia", "Rua", "Travessa", "Via" }));
-        comboBoxTipo.addActionListener(new java.awt.event.ActionListener() {
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alameda", "Área", "Avenida", "Campo", "Chácara", "Estrada", "Ladeira", "Loteamento", "Morro", "Parque", "Passarela", "Praça", "Quadra", "Rodovia", "Rua", "Travessa", "Via" }));
+        cmbTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxTipoActionPerformed(evt);
+                cmbTipoActionPerformed(evt);
             }
         });
 
@@ -166,8 +170,8 @@ public class JFrameUnidade extends javax.swing.JFrame {
                             .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel1)
-                                .addComponent(comboBoxTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtCodEndereco)
+                                .addComponent(cmbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtCodUnidade)
                                 .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5))
                         .addGap(81, 81, 81)
@@ -177,7 +181,7 @@ public class JFrameUnidade extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtBairro, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUnidadeSetor)))
+                            .addComponent(txtNomeUnidade)))
                     .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                         .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelEnderecoLayout.createSequentialGroup()
@@ -225,15 +229,15 @@ public class JFrameUnidade extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(3, 3, 3)
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUnidadeSetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomeUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,105 +282,184 @@ public class JFrameUnidade extends javax.swing.JFrame {
 
         jPanelStart.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        buttonOk.setText("Ok");
-        buttonOk.addActionListener(new java.awt.event.ActionListener() {
+        buttonOK.setText("OK");
+        buttonOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonOkActionPerformed(evt);
+                buttonOKActionPerformed(evt);
             }
         });
 
-        buttonCancela.setText("Cancela");
-        buttonCancela.addActionListener(new java.awt.event.ActionListener() {
+        buttonCancelar.setText("Cancelar");
+        buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCancelaActionPerformed(evt);
+                buttonCancelarActionPerformed(evt);
             }
         });
 
         buttonSair.setText("Sair");
-
-        jRadioButtonNovo.setText("Novo");
-        jRadioButtonNovo.addActionListener(new java.awt.event.ActionListener() {
+        buttonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonNovoActionPerformed(evt);
+                buttonSairActionPerformed(evt);
             }
         });
 
-        jRadioButtonAlterar.setText("Alterar");
+        rbNovo.setText("Novo");
+        rbNovo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbNovoMouseClicked(evt);
+            }
+        });
+        rbNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbNovoActionPerformed(evt);
+            }
+        });
 
-        jRadioButtonExcluir.setText("Excluir");
+        rbAlterar.setText("Alterar");
+        rbAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbAlterarMouseClicked(evt);
+            }
+        });
+        rbAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbAlterarActionPerformed(evt);
+            }
+        });
+
+        rbExcluir.setText("Excluir");
+        rbExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbExcluirMouseClicked(evt);
+            }
+        });
+        rbExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbExcluirActionPerformed(evt);
+            }
+        });
+
+        ButtonRefresh.setText("Refresh");
 
         javax.swing.GroupLayout jPanelStartLayout = new javax.swing.GroupLayout(jPanelStart);
         jPanelStart.setLayout(jPanelStartLayout);
         jPanelStartLayout.setHorizontalGroup(
             jPanelStartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelStartLayout.createSequentialGroup()
-                .addGap(71, 71, 71)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStartLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanelStartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelStartLayout.createSequentialGroup()
+                        .addComponent(rbNovo)
+                        .addGap(8, 8, 8))
+                    .addComponent(rbExcluir)
+                    .addComponent(rbAlterar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanelStartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButtonExcluir)
-                    .addComponent(jRadioButtonAlterar)
-                    .addComponent(jRadioButtonNovo)
-                    .addGroup(jPanelStartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(buttonCancela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonOk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(82, Short.MAX_VALUE))
+                    .addComponent(buttonCancelar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonOK, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonRefresh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36))
         );
+
+        jPanelStartLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ButtonRefresh, buttonCancelar, buttonOK});
+
         jPanelStartLayout.setVerticalGroup(
             jPanelStartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStartLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jRadioButtonNovo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButtonAlterar)
+            .addGroup(jPanelStartLayout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(rbNovo)
+                .addGap(29, 29, 29)
+                .addComponent(rbAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jRadioButtonExcluir)
+                .addComponent(rbExcluir)
+                .addGap(62, 62, 62))
+            .addGroup(jPanelStartLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(buttonOK)
                 .addGap(18, 18, 18)
-                .addComponent(buttonOk)
+                .addComponent(buttonCancelar)
                 .addGap(18, 18, 18)
-                .addComponent(buttonCancela)
-                .addGap(18, 18, 18)
+                .addComponent(ButtonRefresh)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonSair)
-                .addContainerGap())
+                .addGap(28, 28, 28))
         );
+
+        jPanelStartLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonRefresh, buttonCancelar, buttonOK});
 
         jPanelFiltros.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3), "Filtros", javax.swing.border.TitledBorder.TRAILING, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         jLabel14.setText("Código");
 
-        txtCodigoFiltro.addActionListener(new java.awt.event.ActionListener() {
+        txtUnidadePesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUnidadePesquisaFocusGained(evt);
+            }
+        });
+
+        txtCodigoPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCodigoPesquisaFocusGained(evt);
+            }
+        });
+        txtCodigoPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoFiltroActionPerformed(evt);
+                txtCodigoPesquisaActionPerformed(evt);
             }
         });
 
         jLabel15.setText("Unidade");
 
+        buttonPesquisaUnidade.setText("Pesquisa");
+        buttonPesquisaUnidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPesquisaUnidadeActionPerformed(evt);
+            }
+        });
+
+        buttonRefresh.setText("Refresh");
+        buttonRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelFiltrosLayout = new javax.swing.GroupLayout(jPanelFiltros);
         jPanelFiltros.setLayout(jPanelFiltrosLayout);
         jPanelFiltrosLayout.setHorizontalGroup(
             jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFiltrosLayout.createSequentialGroup()
+            .addGroup(jPanelFiltrosLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14)
-                    .addComponent(txtCodigoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodigoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelFiltrosLayout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addGap(0, 286, Short.MAX_VALUE))
-                    .addComponent(txtUnidadeFiltro))
+                    .addComponent(jLabel15)
+                    .addComponent(txtUnidadePesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonPesquisaUnidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelFiltrosLayout.setVerticalGroup(
             jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFiltrosLayout.createSequentialGroup()
-                .addGroup(jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUnidadeFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCodigoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelFiltrosLayout.createSequentialGroup()
+                        .addGroup(jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtUnidadePesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCodigoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelFiltrosLayout.createSequentialGroup()
+                        .addComponent(buttonPesquisaUnidade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonRefresh)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -393,23 +476,30 @@ public class JFrameUnidade extends javax.swing.JFrame {
         jPanelOrdenacaoLayout.setHorizontalGroup(
             jPanelOrdenacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelOrdenacaoLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
                 .addComponent(jRadioButtonCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jRadioButtonNome, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(jRadioButtonContato, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 115, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanelOrdenacaoLayout.setVerticalGroup(
             jPanelOrdenacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelOrdenacaoLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(15, 15, 15)
                 .addGroup(jPanelOrdenacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButtonCodigo)
                     .addComponent(jRadioButtonNome)
                     .addComponent(jRadioButtonContato))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
+
+        jScrollPaneTabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPaneTabelaMouseClicked(evt);
+            }
+        });
 
         jTableUnidade.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -422,6 +512,11 @@ public class JFrameUnidade extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableUnidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableUnidadeMouseClicked(evt);
+            }
+        });
         jScrollPaneTabela.setViewportView(jTableUnidade);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -437,8 +532,8 @@ public class JFrameUnidade extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanelStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanelFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                        .addComponent(jPanelFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanelOrdenacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -447,10 +542,10 @@ public class JFrameUnidade extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanelFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelOrdenacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPaneTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                    .addComponent(jPanelOrdenacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPaneTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -462,13 +557,13 @@ public class JFrameUnidade extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comboBoxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTipoActionPerformed
+    private void cmbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxTipoActionPerformed
+    }//GEN-LAST:event_cmbTipoActionPerformed
 
-    private void txtCodigoFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoFiltroActionPerformed
+    private void txtCodigoPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoPesquisaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoFiltroActionPerformed
+    }//GEN-LAST:event_txtCodigoPesquisaActionPerformed
 
     private void txtBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBairroActionPerformed
         // TODO add your handling code here:
@@ -478,15 +573,20 @@ public class JFrameUnidade extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCidadeActionPerformed
 
-    private void buttonCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelaActionPerformed
-        habilitaRdButtons();
+    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
+
+        habilitaRbButtons();
         LimpaCamposTexto();
         desabilitaCamposdeTexto();
         desmarcarRbButtons();
-    }//GEN-LAST:event_buttonCancelaActionPerformed
+        buttonOK.setEnabled(false);
+        buttonCancelar.setEnabled(false);
 
-    private void buttonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOkActionPerformed
-        unidade.setUnidade(txtUnidadeSetor.getText());
+    }//GEN-LAST:event_buttonCancelarActionPerformed
+
+    private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
+        
+        unidade.setUnidade(txtNomeUnidade.getText());
         unidade.setEndereco(txtLogradouro.getText());
         unidade.setNumero(txtNumero.getText());
         unidade.setBairro(txtBairro.getText());
@@ -496,36 +596,182 @@ public class JFrameUnidade extends javax.swing.JFrame {
         unidade.setTelefone2(txtFone2.getText());
         unidade.setResponsavel(txtResponsavel.getText());
         unidade.setFoneContato(txtCelular.getText());
-        unidade.setTipo(comboBoxTipo.getSelectedItem().toString());
+        unidade.setTipo(cmbTipo.getSelectedItem().toString());
         
 
 // TODO add your handling code here:
-        if (jRadioButtonNovo.isSelected()) {
+        if (rbNovo.isSelected()) {
             uni.InserirUnidade(unidade);
-        } else if (jRadioButtonExcluir.isSelected()) {
-            if (!"".equals(txtCodEndereco.getText())) {
-                unidade.setCodUnidade(Integer.valueOf(txtCodEndereco.getText()));
-                uni.ExcluirUsuario(unidade);
+        } else if (rbExcluir.isSelected()) {
+            if (!"".equals(txtCodUnidade.getText())) {
+                unidade.setCodUnidade(Integer.valueOf(txtCodUnidade.getText()));
+                uni.ExcluirUnidade(unidade);
             } else {
                 JOptionPane.showMessageDialog(null, "Escolha na tabela o item a ser excluído.");
             }
-        } else if (!"".equals(txtCodEndereco.getText())) {
-            unidade.setCodUnidade(Integer.valueOf(txtCodEndereco.getText()));
-            uni.AlterarUsuario(unidade);
+        } else if (!"".equals(txtCodUnidade.getText())) {
+            unidade.setCodUnidade(Integer.valueOf(txtCodUnidade.getText()));
+            uni.AlterarUnidade(unidade);
         } else {
             JOptionPane.showMessageDialog(null, "Escolha na tabela o item a ser alterado.");
         }
-    }//GEN-LAST:event_buttonOkActionPerformed
+    }//GEN-LAST:event_buttonOKActionPerformed
 
-    private void jRadioButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNovoActionPerformed
+    private void rbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNovoActionPerformed
         desabilitaRdButtons();
-        habilitaCamposdeTexto();  
-    }//GEN-LAST:event_jRadioButtonNovoActionPerformed
+        habilitaCamposdeTexto();
+        rbExcluir.setSelected(false);
+        rbAlterar.setSelected(false);
+    }//GEN-LAST:event_rbNovoActionPerformed
 
     private void txtCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCepActionPerformed
-         buscaCep();
+        buscaCep();
     }//GEN-LAST:event_txtCepActionPerformed
-     public void buscaCep() {
+
+    private void rbNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbNovoMouseClicked
+        // TODO add your handling code here:
+        rbExcluir.setSelected(false);
+        rbAlterar.setSelected(false);
+        buttonOK.setEnabled(true);
+        buttonCancelar.setEnabled(true);
+    }//GEN-LAST:event_rbNovoMouseClicked
+
+    private void rbAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbAlterarMouseClicked
+        // TODO add your handling code here:
+        rbExcluir.setSelected(false);
+        rbNovo.setSelected(false);
+        buttonOK.setEnabled(true);
+        buttonCancelar.setEnabled(true);
+        
+    }//GEN-LAST:event_rbAlterarMouseClicked
+
+    private void rbExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbExcluirMouseClicked
+        rbNovo.setSelected(false);
+        rbAlterar.setSelected(false);
+        buttonOK.setEnabled(true);
+        buttonCancelar.setEnabled(true);
+
+    }//GEN-LAST:event_rbExcluirMouseClicked
+
+    private void jScrollPaneTabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPaneTabelaMouseClicked
+
+
+    }//GEN-LAST:event_jScrollPaneTabelaMouseClicked
+
+    private void jTableUnidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableUnidadeMouseClicked
+        try {
+            // TODO add your handling code here:
+            //Preenche os Campos de Texto correspondentes ao clicar numa linha do JTable
+            String codigoUnidade = "" + jTableUnidade.getValueAt(jTableUnidade.getSelectedRow(), 0);
+            conecta.conexao();
+            conecta.executaSQL("Select * from unidade where cod_unidade='" + codigoUnidade + "'");
+            conecta.rs.first();
+            txtCodUnidade.setText(String.valueOf(conecta.rs.getInt("Cod_unidade")));
+            txtNomeUnidade.setText(String.valueOf(conecta.rs.getString("Nome_unidade")));
+            //cmbTipo.setText(String.valueOf(conecta.rs.getString("Nome_unidade")));
+            txtLogradouro.setText(String.valueOf(conecta.rs.getString("End_unidade")));
+            txtNumero.setText(String.valueOf(conecta.rs.getString("Nr_endereco")));
+            txtBairro.setText(String.valueOf(conecta.rs.getString("Bairro_unidade")));
+            txtCidade.setText(String.valueOf(conecta.rs.getString("Cidade_unidade")));
+            //comboBoxUf.setText(String.valueOf(conecta.rs.getString("UF_unidade")));
+            txtFone1.setText(String.valueOf(conecta.rs.getString("Fone1_unidade")));
+            txtFone2.setText(String.valueOf(conecta.rs.getString("Fone2_unidade")));
+            txtResponsavel.setText(String.valueOf(conecta.rs.getString("Resp_unidade")));
+            txtCelular.setText(String.valueOf(conecta.rs.getString("Fone_contato")));
+
+            //conecta.desconectar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao capturar dados da linha selecionada" + ex.getMessage());
+        }
+    }//GEN-LAST:event_jTableUnidadeMouseClicked
+
+    private void rbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAlterarActionPerformed
+        // TODO add your handling code here:
+        
+        rbExcluir.setSelected(false);
+        rbNovo.setSelected(false);
+        buttonOK.setEnabled(true);
+        buttonCancelar.setEnabled(true);
+        
+        JOptionPane.showMessageDialog(null, "Dê duplo clique com o mouse na linha da tabela acima\n correspondente à Unidade que você quer alterar");
+        
+    }//GEN-LAST:event_rbAlterarActionPerformed
+
+    private void rbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbExcluirActionPerformed
+        
+// TODO add your handling code here:
+        rbAlterar.setSelected(false);
+        rbNovo.setSelected(false);
+        buttonOK.setEnabled(true);
+        buttonCancelar.setEnabled(true);
+        
+        JOptionPane.showMessageDialog(null, "Dê duplo clique com o mouse na linha da tabela acima\n correspondente à Unidade que você quer excluir");
+        
+    }//GEN-LAST:event_rbExcluirActionPerformed
+
+    private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_buttonSairActionPerformed
+
+    private void buttonPesquisaUnidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisaUnidadeActionPerformed
+        // TODO add your handling code here:
+        
+        switch (flagUnidade) {
+            case 1:
+                preencherTabela("Select * from unidade order by cod_unidade");
+                habilitaCamposdeTexto();
+                txtCodigoPesquisa.setText(txtCodigoPesquisa.getText().toUpperCase());
+                String pesquisaporcodigorim = txtCodigoPesquisa.getText();
+
+                if (pesquisaporcodigorim.length() > 0) {
+                    for (int i = 0; i < jTableUnidade.getRowCount(); i++) {
+                        if (!pesquisaporcodigorim.equals(jTableUnidade.getValueAt(i, 0).toString())) {
+                        } else {
+                            preencherTabela("Select * From unidade where Cod_unidade='" + pesquisaporcodigorim + "'");
+                        }
+                    }
+                }
+            break;
+            case 2:
+                preencherTabela("Select * from unidade order by cod_unidade");
+                habilitaCamposdeTexto();
+                txtUnidadePesquisa.setText(txtUnidadePesquisa.getText().toUpperCase());
+                String pesquisaporunidade = txtUnidadePesquisa.getText();
+
+                if (pesquisaporunidade.length() > 0) {
+                    for (int i = 0; i < jTableUnidade.getRowCount(); i++) {
+                        if (!pesquisaporunidade.equals(jTableUnidade.getValueAt(i, 1).toString())) {
+                        } else {
+                            preencherTabela("Select * From unidade where Nome_unidade='%" + pesquisaporunidade + "%'");
+                        }
+                    }
+                }
+                break;
+        }               
+        
+    }//GEN-LAST:event_buttonPesquisaUnidadeActionPerformed
+
+    private void txtCodigoPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoPesquisaFocusGained
+        // TODO add your handling code here:
+        flagUnidade=1;
+        txtUnidadePesquisa.setText("");
+        
+    }//GEN-LAST:event_txtCodigoPesquisaFocusGained
+
+    private void txtUnidadePesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUnidadePesquisaFocusGained
+        // TODO add your handling code here:
+        flagUnidade=2;
+        txtCodigoPesquisa.setText("");
+        
+    }//GEN-LAST:event_txtUnidadePesquisaFocusGained
+
+    private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
+        // TODO add your handling code here:
+        
+        preencherTabela("Select * from unidade order by Cod_unidade");
+        
+    }//GEN-LAST:event_buttonRefreshActionPerformed
+    public void buscaCep() {
         //Faz a busca para o cep 58043-280
         WebServiceCep webServiceCep = WebServiceCep.searchCep(txtCep.getText());
         //A ferramenta de busca ignora qualquer caracter que n?o seja n?mero.
@@ -549,8 +795,7 @@ public class JFrameUnidade extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
         }
     }
-    
-    
+
     public void preencherTabela(String SQL) {
 
         ArrayList dados = new ArrayList();
@@ -617,6 +862,7 @@ public class JFrameUnidade extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(JFrameUnidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -627,10 +873,13 @@ public class JFrameUnidade extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonCancela;
-    private javax.swing.JButton buttonOk;
+    private javax.swing.JButton ButtonRefresh;
+    private javax.swing.JButton buttonCancelar;
+    private javax.swing.JButton buttonOK;
+    private javax.swing.JButton buttonPesquisaUnidade;
+    private javax.swing.JButton buttonRefresh;
     private javax.swing.JButton buttonSair;
-    private javax.swing.JComboBox<String> comboBoxTipo;
+    private javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JComboBox<String> comboBoxUf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -652,27 +901,27 @@ public class JFrameUnidade extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelOrdenacao;
     private javax.swing.JPanel jPanelStart;
     private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButtonAlterar;
     private javax.swing.JRadioButton jRadioButtonCodigo;
     private javax.swing.JRadioButton jRadioButtonContato;
-    private javax.swing.JRadioButton jRadioButtonExcluir;
     private javax.swing.JRadioButton jRadioButtonNome;
-    private javax.swing.JRadioButton jRadioButtonNovo;
     private javax.swing.JScrollPane jScrollPaneTabela;
     private javax.swing.JTable jTableUnidade;
+    private javax.swing.JRadioButton rbAlterar;
+    private javax.swing.JRadioButton rbExcluir;
+    private javax.swing.JRadioButton rbNovo;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCelular;
     private javax.swing.JTextField txtCep;
     private javax.swing.JTextField txtCidade;
-    private javax.swing.JTextField txtCodEndereco;
-    private javax.swing.JTextField txtCodigoFiltro;
+    private javax.swing.JTextField txtCodUnidade;
+    private javax.swing.JTextField txtCodigoPesquisa;
     private javax.swing.JTextField txtFone1;
     private javax.swing.JTextField txtFone2;
     private javax.swing.JTextField txtLogradouro;
+    private javax.swing.JTextField txtNomeUnidade;
     private javax.swing.JTextField txtNumero;
     private javax.swing.JTextField txtResponsavel;
-    private javax.swing.JTextField txtUnidadeFiltro;
-    private javax.swing.JTextField txtUnidadeSetor;
+    private javax.swing.JTextField txtUnidadePesquisa;
     // End of variables declaration//GEN-END:variables
 private void desabilitaRdButtons() {
 
@@ -683,14 +932,14 @@ private void desabilitaRdButtons() {
     }
 
     private void habilitaRdButtons() {
-        buttonOk.setEnabled(true);
-        buttonCancela.setEnabled(true);
+        buttonOK.setEnabled(true);
+        buttonCancelar.setEnabled(true);
         buttonSair.setEnabled(true);
     }
 
     private void desabilitaCamposdeTexto() {
-        txtCodEndereco.setEnabled(false);
-        txtUnidadeSetor.setEnabled(false);
+        txtCodUnidade.setEnabled(false);
+        txtNomeUnidade.setEnabled(false);
         txtLogradouro.setEnabled(false);
         txtNumero.setEnabled(false);
         txtBairro.setEnabled(false);
@@ -700,14 +949,14 @@ private void desabilitaRdButtons() {
         txtFone2.setEnabled(false);
         txtResponsavel.setEnabled(false);
         txtCelular.setEnabled(false);
-        comboBoxTipo.setEnabled(false);
+        cmbTipo.setEnabled(false);
         comboBoxUf.setEnabled(false);
     }
 
     private void habilitaCamposdeTexto() {
 
-        txtCodEndereco.setEnabled(true);
-        txtUnidadeSetor.setEnabled(true);
+        txtCodUnidade.setEnabled(true);
+        txtNomeUnidade.setEnabled(true);
         txtLogradouro.setEnabled(true);
         txtNumero.setEnabled(true);
         txtBairro.setEnabled(true);
@@ -717,14 +966,14 @@ private void desabilitaRdButtons() {
         txtFone2.setEnabled(true);
         txtResponsavel.setEnabled(true);
         txtCelular.setEnabled(true);
-        comboBoxTipo.setEnabled(true);
+        cmbTipo.setEnabled(true);
         comboBoxUf.setEnabled(true);
     }
 
     private void LimpaCamposTexto() {
 
-        txtCodEndereco.setText("");
-        txtUnidadeSetor.setText("");
+        txtCodUnidade.setText("");
+        txtNomeUnidade.setText("");
         txtLogradouro.setText("");
         txtNumero.setText("");
         txtCidade.setText("");
@@ -738,9 +987,21 @@ private void desabilitaRdButtons() {
 
     private void desmarcarRbButtons() {
 
-        jRadioButtonCodigo.setSelected(false);
-        jRadioButtonNome.setSelected(false);
-        jRadioButtonContato.setSelected(false);
+        //jRadioButtonCodigo.setSelected(false);
+        //jRadioButtonNome.setSelected(false);
+        //jRadioButtonContato.setSelected(false);
+        
+        rbNovo.setSelected(false);
+        rbExcluir.setSelected(false);
+        rbAlterar.setSelected(false);
+        
+    }
+
+    private void habilitaRbButtons() {
+        rbNovo.setEnabled(true);
+        rbExcluir.setEnabled(true);
+        rbAlterar.setEnabled(true);
+
     }
 
 }
