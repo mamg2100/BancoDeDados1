@@ -20,10 +20,12 @@ import model.ModelDespesa;
 public class ControllerDespesa extends ConnectionDB{
 
     ConnectionDB conecta = new ConnectionDB();
-
+    
+    
     public void InserirDespesa(ModelDespesa despesa) {
 
         conecta.conexao();
+        
         
         try {
             PreparedStatement pst = conecta.conn.prepareStatement("INSERT INTO dotacao (Despesa,Reduzida,Programa,Acao)VALUES(?,?,?,?)");
@@ -32,14 +34,19 @@ public class ControllerDespesa extends ConnectionDB{
             pst.setString(3, despesa.getPrograma());
             pst.setString(4, despesa.getAplicacao());
             pst.execute();
+            
+                        
             JOptionPane.showMessageDialog(null, "Inserção feita com sucesso ");
+            
+            
             // testando passagem de parâmetros
             //JOptionPane.showMessageDialog(null, despesa.getDespesa());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Erro na inserção dos dados: " + ex);
         }
-
+        
         conecta.desconectar();
+        
 
     }
 
@@ -76,7 +83,7 @@ public class ControllerDespesa extends ConnectionDB{
             JOptionPane.showMessageDialog(null, "Despesa de codigo: " + despesa.getCodDespesa()+ " alterada com sucesso!");
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Dados não foram atualizados!"+ex);
+            JOptionPane.showMessageDialog(null, "Dados não foram atualizados!"+ex.getMessage());
         }  
     
     }   

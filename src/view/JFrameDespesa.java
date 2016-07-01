@@ -76,6 +76,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
         buttonSair = new javax.swing.JButton();
         buttonExcluir = new javax.swing.JButton();
         buttonAlterar = new javax.swing.JButton();
+        buttonRefresh = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         label6 = new java.awt.Label();
         txtCodigoPesquisa = new java.awt.TextField();
@@ -252,6 +253,14 @@ public class JFrameDespesa extends javax.swing.JFrame {
         });
         jPanel1.add(buttonAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 84, -1));
 
+        buttonRefresh.setText("Refresh");
+        buttonRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRefreshActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buttonRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, -1, -1));
+
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setName(""); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -361,7 +370,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Pesquisas");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, 30));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, 30));
 
         javax.swing.GroupLayout panelPesquisaLayout = new javax.swing.GroupLayout(panelPesquisa);
         panelPesquisa.setLayout(panelPesquisaLayout);
@@ -471,6 +480,8 @@ public class JFrameDespesa extends javax.swing.JFrame {
         LimpaCamposTexto();
         desabilitaCamposdeTexto();
         desmarcarRbButtons();
+        buttonOK.setEnabled(false);
+        buttonCancelar.setEnabled(false);
 
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
@@ -502,10 +513,11 @@ public class JFrameDespesa extends javax.swing.JFrame {
 
     private void rbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbExcluirActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Dê duplo clique com o mouse na linha da tabela acima \n correspondente à despesa que você quer excluir");
-        desabilitaRbButtons();
+        
         buttonOK.setEnabled(true);
         buttonCancelar.setEnabled(true);
+        JOptionPane.showMessageDialog(null, "Dê duplo clique com o mouse na linha da tabela acima \n correspondente à despesa que você quer excluir");
+        desabilitaRbButtons();
     }//GEN-LAST:event_rbExcluirActionPerformed
 
     private void rbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAlterarActionPerformed
@@ -513,6 +525,9 @@ public class JFrameDespesa extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Dê duplo clique com o mouse na linha da tabela acima \n correspondente à despesa que você quer alterar");
         desabilitaRbButtons();
         habilitaCamposdeTexto();
+        buttonOK.setEnabled(true);
+        buttonCancelar.setEnabled(true);
+        
     }//GEN-LAST:event_rbAlterarActionPerformed
 
     private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
@@ -731,6 +746,11 @@ public class JFrameDespesa extends javax.swing.JFrame {
         txtReduzidaPesquisa.setText("");
     }//GEN-LAST:event_txtAplicacaoPesquisaFocusGained
 
+    private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
+        // TODO add your handling code here:
+        preencherTabela("Select * from dotacao ORDER BY COD_DESPESA");
+    }//GEN-LAST:event_buttonRefreshActionPerformed
+
     public void preencherTabela(String SQL) {
 
         ArrayList dados = new ArrayList();
@@ -794,6 +814,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new JFrameDespesa().setVisible(true);
             }
@@ -805,6 +826,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonOK;
+    private javax.swing.JButton buttonRefresh;
     private javax.swing.JButton buttonSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -864,7 +886,7 @@ public class JFrameDespesa extends javax.swing.JFrame {
 
     private void habilitaCamposdeTexto() {
 
-        txtCodigo.setEnabled(true);
+        //txtCodigo.setEnabled(true);
         txtDespesa.setEnabled(true);
         txtReduzida.setEnabled(true);
         txtPrograma.setEnabled(true);

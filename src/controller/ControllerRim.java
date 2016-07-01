@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import java.sql.PreparedStatement;
@@ -18,22 +17,22 @@ import model.ModelUnidade;
  * @author Marco Antonio
  */
 public class ControllerRim extends ConnectionDB {
-    
+
     ConnectionDB conecta = new ConnectionDB();
 
     public void InserirRequisicao(ModelRim rim) throws ParseException {
 
         conecta.conexao();
         //JOptionPane.showMessageDialog(null,"Entramos na inserção");
-        
+
         try {
             PreparedStatement pst = conecta.conn.prepareStatement("INSERT INTO rim "
-            + "(Nome_Unidade,"
-            + "Descricao,"
-            + "Dotacao,"
-            + "Tipo_RIM,"
-            + "Cetil,"
-            + "DataCetil,"
+                    + "(Nome_Unidade,"
+                    + "Descricao,"
+                    + "Dotacao,"
+                    + "Tipo_RIM,"
+                    + "Cetil,"
+                    + "DataCetil,"
                     //+ "DataCetilSQL,"
                     + "ValorEstimado,"
                     + "ValorReal,"
@@ -53,8 +52,7 @@ public class ControllerRim extends ConnectionDB {
                     + "Cd_Usuario,"
                     + "CD_unidade)"
                     + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-          
-                        
+
             pst.setString(1, rim.getUnidade());
             pst.setString(2, rim.getDescricao());
             pst.setString(3, rim.getDotacao());
@@ -85,13 +83,13 @@ public class ControllerRim extends ConnectionDB {
             pst.setInt(23, 9);
             //pst.setInt(23, rim.getCodUsuario());
             //pst.setInt(24, rim.getCodUnidade());            
-                                 
+
             pst.execute();
             JOptionPane.showMessageDialog(null, "Inserção feita com sucesso ");
             // testando passagem de parâmetros
             //JOptionPane.showMessageDialog(null, despesa.getDespesa());
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Erro na inserção dos dados: " + ex);
+            JOptionPane.showMessageDialog(null, "Erro na inserção dos dados: " + ex);
         }
 
         conecta.desconectar();
@@ -100,64 +98,63 @@ public class ControllerRim extends ConnectionDB {
 
     public void ExcluirRequisicao(ModelRim rim) {
 
-       conecta.conexao();
+        conecta.conexao();
 
         try {
             PreparedStatement pst = conecta.conn.prepareStatement("delete from rim where Cod_Rim=?");
             pst.setInt(1, (rim.getCodRim()));
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Rim de codigo: " + rim.getCodRim()+ " excluída com sucesso!");
+            JOptionPane.showMessageDialog(null, "Rim de codigo: " + rim.getCodRim() + " excluída com sucesso!");
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Dados não excluídos!"+ex);
+            JOptionPane.showMessageDialog(null, "Dados não excluídos!" + ex);
         }
-       
+
         conecta.desconectar();
     }
-    
-    public void AlterarRequisicao(ModelRim rim){
-    
+
+    public void AlterarRequisicao(ModelRim rim) {
+
         try {
             conecta.conexao();
-           //PreparedStatement pst = conecta.conn.prepareStatement("update dotacao set Despesa=?,Reduzida=?,Programa=?,Acao=? where Cod_Despesa=? ");
-           PreparedStatement pst = conecta.conn.prepareStatement("update rim set"
-                   + " Nome_Unidade=?,"
-                   + "Descricao=?,"
-                   + "Dotacao=?,"
-                   + "Tipo_Rim=?,"
-                   + "Cetil=?,"
-                   + "DataCetil=?,"
-                   //+ "DataCetilSQL=?,"
-                   + "ValorEstimado=?, "
-                   + "ValorReal=?,"
-                   + "Processo=?,"
-                   + "ano_processo=?,"
-                   + "ProcessoContabil=?,"
-                   + "ano_processo_contabil=?,"
-                   + "Contabilidade=?,"
-                   + "OrdenadorAss=?,"
-                   + "ComprasPrim=?,"
-                   + "OrdenadorEmpenho=?,"
-                   + "ComprasSeg=?,"
-                   + "Dipe=?,"
-                   + "Cadastrante=?,"
-                   + "DataCadastro=?,"
-                   + "Observacao=?,"
-                   //+ "Atendida=?,"
+            //PreparedStatement pst = conecta.conn.prepareStatement("update dotacao set Despesa=?,Reduzida=?,Programa=?,Acao=? where Cod_Despesa=? ");
+            PreparedStatement pst = conecta.conn.prepareStatement("update rim set"
+                    + " Nome_Unidade=?,"
+                    + "Descricao=?,"
+                    + "Dotacao=?,"
+                    + "Tipo_Rim=?,"
+                    + "Cetil=?,"
+                    + "DataCetil=?,"
+                    //+ "DataCetilSQL=?,"
+                    + "ValorEstimado=?, "
+                    + "ValorReal=?,"
+                    + "Processo=?,"
+                    + "ano_processo=?,"
+                    + "ProcessoContabil=?,"
+                    + "ano_processo_contabil=?,"
+                    + "Contabilidade=?,"
+                    + "OrdenadorAss=?,"
+                    + "ComprasPrim=?,"
+                    + "OrdenadorEmpenho=?,"
+                    + "ComprasSeg=?,"
+                    + "Dipe=?,"
+                    + "Cadastrante=?,"
+                    + "DataCadastro=?,"
+                    + "Observacao=?"
+                   // + "Atendida=?,"
                    //+ "Concluida=?,"
                    //+ "Cd_usuario=?,"
-                   //+ "Cd_unidade=?"                   
-                   + "where Cod_rim=?");
-           
+                    //+ "Cd_unidade=?"                   
+                    + "where Cod_rim=?");
+
             /*
-            setString(20, rim.getCadastrante());
-            pst.setString(21, rim.getDataCadastro());
-            pst.setString(22, rim.getObservacao());
-            pst.setInt(23, rim.getCodUsuario());
-            pst.setInt(24, rim.getCodUnidade()); 
-            pst.execute();
-              */
-           
+             setString(20, rim.getCadastrante());
+             pst.setString(21, rim.getDataCadastro());
+             pst.setString(22, rim.getObservacao());
+             pst.setInt(23, rim.getCodUsuario());
+             pst.setInt(24, rim.getCodUnidade()); 
+             pst.execute();
+             */
             pst.setString(1, rim.getUnidade());
             pst.setString(2, rim.getDescricao());
             pst.setString(3, rim.getDotacao());
@@ -183,19 +180,19 @@ public class ControllerRim extends ConnectionDB {
             pst.setInt(22, rim.getCodRim());
             //pst.setInt(23, 9);
             pst.execute();
-                    
-            JOptionPane.showMessageDialog(null, "Requisição de codigo: " + rim.getCodRim()+ " alterada com sucesso!");
+
+            JOptionPane.showMessageDialog(null, "Requisição de codigo: " + rim.getCodRim() + " alterada com sucesso!");
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Dados não foram atualizados!\n"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "ERRO!\n" + ex.getMessage());
         }
-        
-    }   
-    
+
+    }
+
     public void obtendoCodigoUnidade(ModelUnidade uni) {
 
-       conecta.conexao();
-      
+        conecta.conexao();
+
         try {
             PreparedStatement pst = conecta.conn.prepareStatement("select cod_unidade from unidade where Nome_Unidade=?");
             pst.setInt(1, (uni.getCodUnidade()));
@@ -203,9 +200,9 @@ public class ControllerRim extends ConnectionDB {
             JOptionPane.showMessageDialog(null, "Codigo:\n" + uni.getCodUnidade());
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Dados não excluídos!"+ex);
+            JOptionPane.showMessageDialog(null, "Dados não excluídos!" + ex);
         }
-       
+
         conecta.desconectar();
     }
 }
