@@ -33,12 +33,14 @@ public class JFrameRim extends javax.swing.JFrame {
     ModelRim requi = new ModelRim();// foi tornado global para não ter que instanciar novamente
     ControllerRim ri = new ControllerRim();
     int flag = 0;
+    int flagPesquisa = 0;
 
     public JFrameRim() {
         initComponents();
 
         txtFlag.setVisible(false);
         txtDataCetilSQL.setVisible(false);
+        txtFlagPesquisa.setVisible(false);
 
         desabilitaCamposdeTexto();
         conecta.conexao();
@@ -124,6 +126,8 @@ public class JFrameRim extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         lblPesquisa = new javax.swing.JLabel();
         txtDescricaoPesquisa = new javax.swing.JTextField();
+        buttonPesquisar = new javax.swing.JButton();
+        txtFlagPesquisa = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         rbNovo = new javax.swing.JRadioButton();
         rbAlterar = new javax.swing.JRadioButton();
@@ -199,6 +203,12 @@ public class JFrameRim extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        txtAnoPesquisa.setEnabled(false);
+        txtAnoPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtAnoPesquisaFocusGained(evt);
+            }
+        });
         txtAnoPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAnoPesquisaActionPerformed(evt);
@@ -210,30 +220,52 @@ public class JFrameRim extends javax.swing.JFrame {
             }
         });
 
+        txtCodigoPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCodigoPesquisaFocusGained(evt);
+            }
+        });
         txtCodigoPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoPesquisaKeyPressed(evt);
             }
         });
 
+        txtUnidadePesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUnidadePesquisaFocusGained(evt);
+            }
+        });
         txtUnidadePesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUnidadePesquisaActionPerformed(evt);
             }
         });
 
-        txtCetilPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCetilPesquisaKeyPressed(evt);
+        txtCetilPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCetilPesquisaFocusGained(evt);
             }
         });
 
-        txtProcessoPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtProcessoPesquisaKeyPressed(evt);
+        txtDataCetilPesquisa.setEnabled(false);
+        txtDataCetilPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDataCetilPesquisaFocusGained(evt);
             }
         });
 
+        txtProcessoPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtProcessoPesquisaFocusGained(evt);
+            }
+        });
+
+        txtProcessoContabilPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtProcessoContabilPesquisaFocusGained(evt);
+            }
+        });
         txtProcessoContabilPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtProcessoContabilPesquisaKeyPressed(evt);
@@ -267,23 +299,29 @@ public class JFrameRim extends javax.swing.JFrame {
         lblPesquisa.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         lblPesquisa.setText("Pesquisa");
 
-        txtDescricaoPesquisa.addActionListener(new java.awt.event.ActionListener() {
+        txtDescricaoPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDescricaoPesquisaFocusGained(evt);
+            }
+        });
+
+        buttonPesquisar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        buttonPesquisar.setText("Pesquisar");
+        buttonPesquisar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        buttonPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescricaoPesquisaActionPerformed(evt);
+                buttonPesquisarActionPerformed(evt);
             }
         });
-        txtDescricaoPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtDescricaoPesquisaKeyPressed(evt);
-            }
-        });
+
+        txtFlagPesquisa.setText("jTextField1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,30 +350,37 @@ public class JFrameRim extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(txtProcessoContabilPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel3)
-                    .addComponent(txtDescricaoPesquisa))
-                .addContainerGap(25, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(248, 248, 248))
+                            .addComponent(txtProcessoContabilPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(91, 91, 91)
+                        .addComponent(lblPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDescricaoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                    .addComponent(txtFlagPesquisa))
+                .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(lblPesquisa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(txtFlagPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(5, 5, 5)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel2))
+                                        .addGap(5, 5, 5))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lblPesquisa)
+                                        .addGap(18, 18, 18)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtAnoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtCodigoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -343,27 +388,30 @@ public class JFrameRim extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(24, 24, 24)))
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel7)))
-                        .addGap(5, 5, 5)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUnidadePesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtCetilPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtDataCetilPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(6, 6, 6)
-                        .addComponent(txtProcessoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(6, 6, 6)
-                        .addComponent(txtProcessoContabilPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel7)))
+                                .addGap(5, 5, 5)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtUnidadePesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(txtCetilPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtDataCetilPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel5))
+                                .addGap(6, 6, 6)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtProcessoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtProcessoContabilPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(buttonPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -409,6 +457,7 @@ public class JFrameRim extends javax.swing.JFrame {
 
         buttonOK.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         buttonOK.setText("OK");
+        buttonOK.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         buttonOK.setEnabled(false);
         buttonOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -418,6 +467,7 @@ public class JFrameRim extends javax.swing.JFrame {
 
         buttonAlterar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         buttonAlterar.setText("Alterar");
+        buttonAlterar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         buttonAlterar.setEnabled(false);
         buttonAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -427,6 +477,7 @@ public class JFrameRim extends javax.swing.JFrame {
 
         buttonExcluir.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         buttonExcluir.setText("Excluir");
+        buttonExcluir.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         buttonExcluir.setEnabled(false);
         buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -436,6 +487,7 @@ public class JFrameRim extends javax.swing.JFrame {
 
         buttonCancelar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         buttonCancelar.setText("Cancelar");
+        buttonCancelar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         buttonCancelar.setEnabled(false);
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -445,6 +497,7 @@ public class JFrameRim extends javax.swing.JFrame {
 
         buttonSair.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         buttonSair.setText("Sair");
+        buttonSair.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         buttonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSairActionPerformed(evt);
@@ -456,49 +509,45 @@ public class JFrameRim extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rbExcluir)
                     .addComponent(rbNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rbAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
+                .addGap(47, 47, 47)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(buttonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buttonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(buttonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(buttonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(buttonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(rbNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
                         .addComponent(rbAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
-                        .addComponent(rbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonOK)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(buttonExcluir))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(buttonAlterar)))
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonCancelar)
-                        .addGap(8, 8, 8)
-                        .addComponent(buttonSair)
-                        .addGap(21, 21, 21))))
+                        .addComponent(rbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(buttonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {buttonAlterar, buttonCancelar, buttonExcluir, buttonOK, buttonSair});
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -879,6 +928,7 @@ public class JFrameRim extends javax.swing.JFrame {
 
             }
         ));
+        jTableRim.setEnabled(false);
         jTableRim.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableRimMouseClicked(evt);
@@ -931,7 +981,7 @@ public class JFrameRim extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jCalendar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jCalendar, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -940,19 +990,19 @@ public class JFrameRim extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(55, 55, 55)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -961,13 +1011,13 @@ public class JFrameRim extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1011,7 +1061,7 @@ public class JFrameRim extends javax.swing.JFrame {
         lblCadastro.setForeground(Color.red);
         buttonOK.setEnabled(true);
         buttonCancelar.setEnabled(true);
-
+        jTableRim.setEnabled(true);
         JOptionPane.showMessageDialog(null, "Dê duplo clique com o mouse na linha da tabela acima\ncorrespondente à R.I que você quer alterar.");
 
 
@@ -1035,6 +1085,7 @@ public class JFrameRim extends javax.swing.JFrame {
         buttonCancelar.setEnabled(true);
         lblCadastro.setText("Excluir");
         lblCadastro.setForeground(Color.red);
+        jTableRim.setEnabled(true);
         JOptionPane.showMessageDialog(null, "Dê duplo clique com o mouse na linha da tabela acima\ncorrespondente à R.I que você quer excluir.");
 
 
@@ -1104,7 +1155,6 @@ public class JFrameRim extends javax.swing.JFrame {
     private void buttonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlterarActionPerformed
         // TODO add your handling code here:
         requi.setCodRim(Integer.valueOf(lblCodigo.getText()));
-
         ri.AlterarRequisicao(requi);
     }//GEN-LAST:event_buttonAlterarActionPerformed
 
@@ -1132,6 +1182,7 @@ public class JFrameRim extends javax.swing.JFrame {
         lblCadastro.setText("");
         lblCadastro.setForeground(Color.white);
         buttonOK.setEnabled(false);
+        jTableRim.setEnabled(false);
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void desmarcarRbButtons() {
@@ -1477,98 +1528,244 @@ public class JFrameRim extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtCodigoPesquisaKeyPressed
 
-    private void txtDescricaoPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescricaoPesquisaKeyPressed
-
-        //txtDescricaoPesquisa.setText(txtDescricaoPesquisa.getText().toUpperCase());
-                    
-       // if (evt.getKeyCode() == evt.VK_ENTER) {
-            
-        //}
-    }//GEN-LAST:event_txtDescricaoPesquisaKeyPressed
-
-    private void txtCetilPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCetilPesquisaKeyPressed
-
-        preencherTabela("Select * from rim order by cod_rim");
-        habilitaCamposdeTexto();
-        String pesquisaporetil = txtCetilPesquisa.getText();
-
-        if (pesquisaporetil.length() > 0) {
-            for (int i = 0; i < jTableRim.getRowCount(); i++) {
-                if (!pesquisaporetil.equals(jTableRim.getValueAt(i, 5).toString())) {
-                } else {
-                    preencherTabela("Select * From rim where cetil='" + pesquisaporetil + "'");
-                }
-            }
-        }
-    }//GEN-LAST:event_txtCetilPesquisaKeyPressed
-
-    private void txtProcessoPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProcessoPesquisaKeyPressed
-
-        // TODO add your handling code here:
-        preencherTabela("Select * from rim order by cod_rim");
-        habilitaCamposdeTexto();
-        String pesquisaporcodigoprocesso = txtProcessoPesquisa.getText();
-
-        if (pesquisaporcodigoprocesso.length() > 0) {
-            for (int i = 0; i < jTableRim.getRowCount(); i++) {
-                if (!pesquisaporcodigoprocesso.equals(jTableRim.getValueAt(i, 10).toString())) {
-                } else {
-                    preencherTabela("Select * From rim where Processo='" + pesquisaporcodigoprocesso + "'");
-                }
-            }
-        }
-    }//GEN-LAST:event_txtProcessoPesquisaKeyPressed
-
     private void txtProcessoContabilPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProcessoContabilPesquisaKeyPressed
 
 // TODO add your handling code here:
-        preencherTabela("Select * from rim order by cod_rim");
-        habilitaCamposdeTexto();
-        String pesquisaporcodigoprocessocontabil = txtProcessoContabilPesquisa.getText();
 
-        if (pesquisaporcodigoprocessocontabil.length() > 0) {
-            for (int i = 0; i < jTableRim.getRowCount(); i++) {
-                if (!pesquisaporcodigoprocessocontabil.equals(jTableRim.getValueAt(i, 12).toString())) {
-                } else {
-                    preencherTabela("Select * From rim where ProcessoContabil='" + pesquisaporcodigoprocessocontabil + "'");
-                }
-            }
-        }
     }//GEN-LAST:event_txtProcessoContabilPesquisaKeyPressed
 
-    private void txtDescricaoPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoPesquisaActionPerformed
-        
-            preencherTabela("Select * from rim order by cod_rim");
-            //habilitaCamposdeTexto();
-            String pesquisadescricao = txtDescricaoPesquisa.getText().toUpperCase();
-            if (pesquisadescricao.length() > 0) {
-                for (int i = 0; i < jTableRim.getRowCount(); i++) {
-                    if (!pesquisadescricao.equals(jTableRim.getValueAt(i, 2).toString())) {
-                    } else {
-                        preencherTabela("Select * From rim where descricao LIKE '%" + pesquisadescricao + "%';");
+    private void txtUnidadePesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnidadePesquisaActionPerformed
+
+
+    }//GEN-LAST:event_txtUnidadePesquisaActionPerformed
+
+    private void buttonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisarActionPerformed
+        // TODO add your handling code here:
+
+        switch (flagPesquisa) {
+
+            case 1:
+                break;
+
+            case 2:
+                preencherTabela("Select * from rim order by cod_rim");
+                habilitaCamposdeTexto();
+                String pesquisaporcodigorim = txtCodigoPesquisa.getText();
+
+                if (pesquisaporcodigorim.length() > 0) {
+                    for (int i = 0; i < jTableRim.getRowCount(); i++) {
+                        if (!pesquisaporcodigorim.equals(jTableRim.getValueAt(i, 0).toString())) {
+                        } else {
+                            preencherTabela("Select * From rim where Cod_rim='" + pesquisaporcodigorim + "'");
+                        }
                     }
                 }
-            }
-    }//GEN-LAST:event_txtDescricaoPesquisaActionPerformed
+                break;
 
-    private void txtUnidadePesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnidadePesquisaActionPerformed
-        // TODO add your handling code here:
-                
-        preencherTabela("Select * from rim order by cod_rim");
-        habilitaCamposdeTexto();
-        String pesquisaporunidade = txtUnidadePesquisa.getText().toUpperCase();
-
-        if (pesquisaporunidade.length() > 0) {
-            for (int i = 0; i < jTableRim.getRowCount(); i++) {
-                if (!pesquisaporunidade.equals(jTableRim.getValueAt(i, 1).toString())) {
-                } else {
-                    preencherTabela("Select * From rim where Nome_Unidade LIKE '%" + txtUnidadePesquisa.getText().toUpperCase() +"%'");
+            case 3:
+                preencherTabela("Select * from rim order by cod_rim");
+                //habilitaCamposdeTexto();
+                String pesquisadescricao = txtDescricaoPesquisa.getText().toUpperCase();
+                if (pesquisadescricao.length() > 0) {
+                    for (int i = 0; i < jTableRim.getRowCount(); i++) {
+                        if (!pesquisadescricao.equals(jTableRim.getValueAt(i, 2).toString())) {
+                        } else {
+                            preencherTabela("Select * From rim where descricao LIKE '%" + pesquisadescricao + "%';");
+                        }
+                    }
                 }
-            }
-        }
-        JOptionPane.showMessageDialog(null, pesquisaporunidade);
+                break;
+
+            case 4:
+                preencherTabela("Select * from rim order by cod_rim");
+                habilitaCamposdeTexto();
+                String pesquisaporunidade = txtUnidadePesquisa.getText().toUpperCase();
+
+                if (pesquisaporunidade.length() > 0) {
+                    for (int i = 0; i < jTableRim.getRowCount(); i++) {
+                        if (!pesquisaporunidade.equals(jTableRim.getValueAt(i, 1).toString())) {
+                        } else {
+                            preencherTabela("Select * From rim where Nome_Unidade LIKE '%" + txtUnidadePesquisa.getText().toUpperCase() + "%'");
+                        }
+                    }
+                }
+                break;
+            
+            case 5:
+                preencherTabela("Select * from rim order by cod_rim");
+                habilitaCamposdeTexto();
+                String pesquisaporetil = txtCetilPesquisa.getText();
+
+                if (pesquisaporetil.length() > 0) {
+                    for (int i = 0; i < jTableRim.getRowCount(); i++) {
+                        if (!pesquisaporetil.equals(jTableRim.getValueAt(i, 5).toString())) {
+                        } else {
+                            preencherTabela("Select * From rim where cetil='" + pesquisaporetil + "'");
+                        }
+                    }
+                }
+                break;
+
+            case 6:
+                break;
+
+            case 7:
+                preencherTabela("Select * from rim order by cod_rim");
+                habilitaCamposdeTexto();
+                String pesquisaporcodigoprocesso = txtProcessoPesquisa.getText();
+
+                if (pesquisaporcodigoprocesso.length() > 0) {
+                    for (int i = 0; i < jTableRim.getRowCount(); i++) {
+                        if (!pesquisaporcodigoprocesso.equals(jTableRim.getValueAt(i, 10).toString())) {
+                        } else {
+                            preencherTabela("Select * From rim where Processo='" + pesquisaporcodigoprocesso + "'");
+                        }
+                    }
+                }
+                break;
                 
-    }//GEN-LAST:event_txtUnidadePesquisaActionPerformed
+            case 8:
+                preencherTabela("Select * from rim order by cod_rim");
+                habilitaCamposdeTexto();
+                String pesquisaporcodigoprocessocontabil = txtProcessoContabilPesquisa.getText();
+
+                if (pesquisaporcodigoprocessocontabil.length() > 0) {
+                    for (int i = 0; i < jTableRim.getRowCount(); i++) {
+                        if (!pesquisaporcodigoprocessocontabil.equals(jTableRim.getValueAt(i, 12).toString())) {
+                        } else {
+                            preencherTabela("Select * From rim where ProcessoContabil='" + pesquisaporcodigoprocessocontabil + "'");
+                        }
+                    }
+                }
+                break;
+        }
+
+    }//GEN-LAST:event_buttonPesquisarActionPerformed
+
+    private void txtCodigoPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoPesquisaFocusGained
+        // TODO add your handling code here:
+        flagPesquisa = 2;
+        txtFlagPesquisa.setText(String.valueOf(flagPesquisa));
+        // limpa demais campos 
+        txtAnoPesquisa.setText("");
+        //txtCodigoPesquisa.setText("");
+        txtDescricaoPesquisa.setText("");
+        txtUnidadePesquisa.setText("");
+        txtProcessoPesquisa.setText("");
+        txtProcessoContabilPesquisa.setText("");
+        txtDataCetilPesquisa.setText("");
+        txtCetilPesquisa.setText("");
+
+    }//GEN-LAST:event_txtCodigoPesquisaFocusGained
+
+    private void txtDescricaoPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescricaoPesquisaFocusGained
+        // TODO add your handling code here:
+        flagPesquisa = 3;
+        txtFlagPesquisa.setText(String.valueOf(flagPesquisa));
+        // limpa demais campos 
+        txtAnoPesquisa.setText("");
+        txtCodigoPesquisa.setText("");
+        //txtDescricaoPesquisa.setText("");
+        txtUnidadePesquisa.setText("");
+        txtProcessoPesquisa.setText("");
+        txtProcessoContabilPesquisa.setText("");
+        txtDataCetilPesquisa.setText("");
+        txtCetilPesquisa.setText("");
+
+    }//GEN-LAST:event_txtDescricaoPesquisaFocusGained
+
+    private void txtAnoPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAnoPesquisaFocusGained
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        flagPesquisa = 1;
+        txtFlagPesquisa.setText(String.valueOf(flagPesquisa));
+        // limpa demais campos 
+        //txtAnoPesquisa.setText("");
+        txtCodigoPesquisa.setText("");
+        txtDescricaoPesquisa.setText("");
+        txtUnidadePesquisa.setText("");
+        txtProcessoPesquisa.setText("");
+        txtProcessoContabilPesquisa.setText("");
+        txtDataCetilPesquisa.setText("");
+        txtCetilPesquisa.setText("");
+
+
+    }//GEN-LAST:event_txtAnoPesquisaFocusGained
+
+    private void txtUnidadePesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUnidadePesquisaFocusGained
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        flagPesquisa = 4;
+        txtFlagPesquisa.setText(String.valueOf(flagPesquisa));
+        // limpa demais campos 
+        txtAnoPesquisa.setText("");
+        txtCodigoPesquisa.setText("");
+        txtDescricaoPesquisa.setText("");
+        //txtUnidadePesquisa.setText("");
+        txtProcessoPesquisa.setText("");
+        txtProcessoContabilPesquisa.setText("");
+        txtDataCetilPesquisa.setText("");
+        txtCetilPesquisa.setText("");
+
+    }//GEN-LAST:event_txtUnidadePesquisaFocusGained
+
+    private void txtCetilPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCetilPesquisaFocusGained
+
+        flagPesquisa = 5;
+        txtFlagPesquisa.setText(String.valueOf(flagPesquisa));
+        // limpa demais campos 
+        txtAnoPesquisa.setText("");
+        txtCodigoPesquisa.setText("");
+        txtDescricaoPesquisa.setText("");
+        txtUnidadePesquisa.setText("");
+        txtProcessoPesquisa.setText("");
+        txtProcessoContabilPesquisa.setText("");
+        txtDataCetilPesquisa.setText("");
+        //txtCetilPesquisa.setText("");           
+    }//GEN-LAST:event_txtCetilPesquisaFocusGained
+
+    private void txtDataCetilPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataCetilPesquisaFocusGained
+
+        flagPesquisa = 6;
+        txtFlagPesquisa.setText(String.valueOf(flagPesquisa));
+        // limpa demais campos 
+        txtAnoPesquisa.setText("");
+        txtCodigoPesquisa.setText("");
+        txtDescricaoPesquisa.setText("");
+        txtUnidadePesquisa.setText("");
+        txtProcessoPesquisa.setText("");
+        txtProcessoContabilPesquisa.setText("");
+        //txtDataCetilPesquisa.setText("");
+        txtCetilPesquisa.setText("");
+    }//GEN-LAST:event_txtDataCetilPesquisaFocusGained
+
+    private void txtProcessoPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProcessoPesquisaFocusGained
+        flagPesquisa = 7;
+        txtFlagPesquisa.setText(String.valueOf(flagPesquisa));
+        // limpa demais campos 
+        txtAnoPesquisa.setText("");
+        txtCodigoPesquisa.setText("");
+        txtDescricaoPesquisa.setText("");
+        txtUnidadePesquisa.setText("");
+        //txtProcessoPesquisa.setText("");
+        txtProcessoContabilPesquisa.setText("");
+        txtDataCetilPesquisa.setText("");
+        txtCetilPesquisa.setText("");
+    }//GEN-LAST:event_txtProcessoPesquisaFocusGained
+
+    private void txtProcessoContabilPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtProcessoContabilPesquisaFocusGained
+        flagPesquisa = 8;
+        txtFlagPesquisa.setText(String.valueOf(flagPesquisa));
+        // limpa demais campos 
+        txtAnoPesquisa.setText("");
+        txtCodigoPesquisa.setText("");
+        txtDescricaoPesquisa.setText("");
+        txtUnidadePesquisa.setText("");
+        txtProcessoPesquisa.setText("");
+        //txtProcessoContabilPesquisa.setText("");
+        txtDataCetilPesquisa.setText("");
+        txtCetilPesquisa.setText("");
+    }//GEN-LAST:event_txtProcessoContabilPesquisaFocusGained
 
     /**
      * @param args the command line arguments
@@ -1612,6 +1809,7 @@ public class JFrameRim extends javax.swing.JFrame {
     private javax.swing.JButton buttonEmpenho;
     private javax.swing.JButton buttonExcluir;
     private javax.swing.JButton buttonOK;
+    private javax.swing.JButton buttonPesquisar;
     private javax.swing.JButton buttonSair;
     private javax.swing.JComboBox cmbCadastrante;
     private javax.swing.JComboBox cmbUnidade;
@@ -1686,6 +1884,7 @@ public class JFrameRim extends javax.swing.JFrame {
     private javax.swing.JTextArea txtDescricao;
     private javax.swing.JTextField txtDescricaoPesquisa;
     private javax.swing.JTextField txtFlag;
+    private javax.swing.JTextField txtFlagPesquisa;
     private javax.swing.JTextField txtProcesso;
     private javax.swing.JTextField txtProcessoContabil;
     private javax.swing.JTextField txtProcessoContabilPesquisa;
@@ -1796,7 +1995,6 @@ public class JFrameRim extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Informação não encontrada.\n" + ex.getMessage());
         }
 
-              
         //Criando a Tabela
         ModelTabela modelo = new ModelTabela(dados, colunas);
         jTableRim.setModel(modelo);
@@ -1886,8 +2084,6 @@ public class JFrameRim extends javax.swing.JFrame {
 
         jTableRim.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        
-        
     }
 
     private void desabilitaCamposdeTexto() {

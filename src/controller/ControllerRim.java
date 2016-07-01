@@ -120,35 +120,44 @@ public class ControllerRim extends ConnectionDB {
         try {
             conecta.conexao();
            //PreparedStatement pst = conecta.conn.prepareStatement("update dotacao set Despesa=?,Reduzida=?,Programa=?,Acao=? where Cod_Despesa=? ");
-           PreparedStatement pst = conecta.conn.prepareStatement("update dotacao set Despesa=?,Reduzida=?,Programa=?,Acao=? where Cod_Despesa=? ");
+           PreparedStatement pst = conecta.conn.prepareStatement("update rim set"
+                   + " Nome_Unidade=?,"
+                   + "Descricao=?,"
+                   + "Dotacao=?,"
+                   + "Tipo_Rim=?,"
+                   + "Cetil=?,"
+                   + "DataCetil=?,"
+                   //+ "DataCetilSQL=?,"
+                   + "ValorEstimado=?, "
+                   + "ValorReal=?,"
+                   + "Processo=?,"
+                   + "ano_processo=?,"
+                   + "ProcessoContabil=?,"
+                   + "ano_processo_contabil=?,"
+                   + "Contabilidade=?,"
+                   + "OrdenadorAss=?,"
+                   + "ComprasPrim=?,"
+                   + "OrdenadorEmpenho=?,"
+                   + "ComprasSeg=?,"
+                   + "Dipe=?,"
+                   + "Cadastrante=?,"
+                   + "DataCadastro=?,"
+                   + "Observacao=?,"
+                   //+ "Atendida=?,"
+                   //+ "Concluida=?,"
+                   //+ "Cd_usuario=?,"
+                   //+ "Cd_unidade=?"                   
+                   + "where Cod_rim=?");
            
             /*
-            pst.setString(1, rim.getUnidade());
-            pst.setString(2, rim.getDescricao());
-            pst.setString(3, rim.getDotacao());
-            pst.setString(4, rim.getTipoRim());
-            pst.setString(5, rim.getCetil());
-            pst.setString(6, rim.getDataCetil());
-            pst.setDate(7,rim.getDataCetilSql());
-            pst.setString(8, rim.getValorEstimado());
-            pst.setString(9, rim.getValorReal());
-            pst.setString(10, rim.getProcesso());
-            pst.setInt(11, rim.getAnoProcesso());
-            pst.setString(12, rim.getProcessoContabil());
-            pst.setInt(13, rim.getAnoProcessoContabil());
-            pst.setString(14, rim.getContabilidade());
-            pst.setString(15, rim.getOrdenadorass());
-            pst.setString(16, rim.getCompraprim());
-            pst.setString(17, rim.getOrdenadorEmpenho());
-            pst.setString(18, rim.getComprasSeg());
-            pst.setString(19, rim.getDipe());
-            pst.setString(20, rim.getCadastrante());
+            setString(20, rim.getCadastrante());
             pst.setString(21, rim.getDataCadastro());
             pst.setString(22, rim.getObservacao());
             pst.setInt(23, rim.getCodUsuario());
             pst.setInt(24, rim.getCodUnidade()); 
             pst.execute();
               */
+           
             pst.setString(1, rim.getUnidade());
             pst.setString(2, rim.getDescricao());
             pst.setString(3, rim.getDotacao());
@@ -171,14 +180,14 @@ public class ControllerRim extends ConnectionDB {
             pst.setString(19, rim.getCadastrante());
             pst.setString(20, rim.getDataCadastro());
             pst.setString(21, rim.getObservacao());
-            pst.setInt(22, 3);
-            pst.setInt(23, 9);
+            pst.setInt(22, rim.getCodRim());
+            //pst.setInt(23, 9);
             pst.execute();
                     
             JOptionPane.showMessageDialog(null, "Requisição de codigo: " + rim.getCodRim()+ " alterada com sucesso!");
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Dados não foram atualizados!"+ex);
+            JOptionPane.showMessageDialog(null, "Dados não foram atualizados!\n"+ex.getMessage());
         }
         
     }   
