@@ -10,7 +10,6 @@ import controller.ControllerUsuario;
 import controller.ModelTabela;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import model.ModelUsuario;
@@ -25,13 +24,15 @@ public class JFrameUsuario extends javax.swing.JFrame {
     ModelUsuario usuario = new ModelUsuario();
     ControllerUsuario usu = new ControllerUsuario();
     
+    
     /**
      * Creates new form JFrameUsuario
      */
     public JFrameUsuario() {
         initComponents();
-        setDefaultCloseOperation(JFrameUsuario.HIDE_ON_CLOSE);
-      
+        
+         
+             
         desabilitaCamposdeTexto();
         conecta.conexao();
         preencherTabela("select * from usuario order by Cod_usuario");
@@ -77,8 +78,8 @@ public class JFrameUsuario extends javax.swing.JFrame {
         rdExcluir = new javax.swing.JRadioButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        txtCodigo1 = new javax.swing.JTextField();
-        txtUsuario1 = new javax.swing.JTextField();
+        txtCodigoPesquisa = new javax.swing.JTextField();
+        txtUsuarioPesquisa = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -114,6 +115,11 @@ public class JFrameUsuario extends javax.swing.JFrame {
         jLabel5.setText("Código");
 
         checkMaster.setText("Master");
+        checkMaster.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                checkMasterMouseClicked(evt);
+            }
+        });
 
         checkSimples.setText("Simples");
 
@@ -143,10 +149,14 @@ public class JFrameUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(checkSimples)
                             .addComponent(checkMaster))
@@ -235,6 +245,11 @@ public class JFrameUsuario extends javax.swing.JFrame {
         });
 
         buttonSair.setText("Sair");
+        buttonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSairActionPerformed(evt);
+            }
+        });
 
         rdNovo.setText("Novo");
         rdNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -244,8 +259,18 @@ public class JFrameUsuario extends javax.swing.JFrame {
         });
 
         rdAlterar.setText("Alterar");
+        rdAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdAlterarActionPerformed(evt);
+            }
+        });
 
         rdExcluir.setText("Excluir");
+        rdExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -268,7 +293,7 @@ public class JFrameUsuario extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(9, 9, 9)
                 .addComponent(rdNovo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rdAlterar)
@@ -304,9 +329,35 @@ public class JFrameUsuario extends javax.swing.JFrame {
 
         jLabel7.setText("Código");
 
-        txtUsuario1.addActionListener(new java.awt.event.ActionListener() {
+        txtCodigoPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCodigoPesquisaFocusGained(evt);
+            }
+        });
+        txtCodigoPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuario1ActionPerformed(evt);
+                txtCodigoPesquisaActionPerformed(evt);
+            }
+        });
+
+        txtUsuarioPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUsuarioPesquisaFocusGained(evt);
+            }
+        });
+        txtUsuarioPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtUsuarioPesquisaMouseClicked(evt);
+            }
+        });
+        txtUsuarioPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioPesquisaActionPerformed(evt);
+            }
+        });
+        txtUsuarioPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuarioPesquisaKeyPressed(evt);
             }
         });
 
@@ -342,9 +393,9 @@ public class JFrameUsuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(txtCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCodigoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtUsuarioPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jRadioButton1)
                         .addGap(18, 18, 18)
@@ -378,8 +429,8 @@ public class JFrameUsuario extends javax.swing.JFrame {
                             .addComponent(jLabel10))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUsuarioPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton1)
                     .addComponent(radioNome)
                     .addComponent(jRadioButton3))
@@ -397,6 +448,11 @@ public class JFrameUsuario extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableUsuarioMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableUsuario);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -450,9 +506,9 @@ public class JFrameUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
-    private void txtUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuario1ActionPerformed
+    private void txtUsuarioPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioPesquisaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuario1ActionPerformed
+    }//GEN-LAST:event_txtUsuarioPesquisaActionPerformed
 
     private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
       
@@ -485,6 +541,9 @@ public class JFrameUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonOKActionPerformed
 
+    
+    
+    
     private void txtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTipoActionPerformed
@@ -503,6 +562,97 @@ public class JFrameUsuario extends javax.swing.JFrame {
 
 // TODO add your handling code here:
     }//GEN-LAST:event_buttonCancelarActionPerformed
+
+    private void checkMasterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkMasterMouseClicked
+       
+    }//GEN-LAST:event_checkMasterMouseClicked
+
+      
+    
+    
+    
+    private void txtCodigoPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoPesquisaActionPerformed
+        txtUsuarioPesquisa.setText("");
+    }//GEN-LAST:event_txtCodigoPesquisaActionPerformed
+
+   
+    
+    
+    private void txtUsuarioPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioPesquisaKeyPressed
+        // TODO add your handling code here:
+           preencherTabela("Select * From usuario  order by cod_usuario");
+
+        habilitaCamposdeTexto();
+        String pesquisausuario = txtUsuarioPesquisa.getText();
+        //JOptionPane.showMessageDialog(null, pesquisarnome);
+
+        if (pesquisausuario.length() > 0) {
+            for (int i = 0; i < jTableUsuario.getRowCount(); i++) {
+                if (!pesquisausuario.equals(jTableUsuario.getValueAt(i, 4).toString())) {
+                } else {
+                 preencherTabela("Select * From usuario where cod_usuario='" + pesquisausuario + "'");
+                }
+            }
+        }
+    }//GEN-LAST:event_txtUsuarioPesquisaKeyPressed
+
+    private void txtUsuarioPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioPesquisaFocusGained
+        txtCodigoPesquisa.setText("");
+        txtUsuarioPesquisa.setText("");
+    }//GEN-LAST:event_txtUsuarioPesquisaFocusGained
+
+    private void txtCodigoPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoPesquisaFocusGained
+        txtCodigoPesquisa.setText("");
+        txtUsuarioPesquisa.setText("");
+    }//GEN-LAST:event_txtCodigoPesquisaFocusGained
+
+    private void rdExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdExcluirActionPerformed
+        JOptionPane.showMessageDialog(null, "Dê duplo clique com o mouse na linha da tabela acima \n correspondente à despesa que você quer excluir");
+        desabilitaRdButtons();
+        buttonOK.setEnabled(true);
+        buttonCancelar.setEnabled(true);
+    }//GEN-LAST:event_rdExcluirActionPerformed
+
+    private void rdAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdAlterarActionPerformed
+        desabilitaRdButtons();
+        habilitaCamposdeTexto();
+    }//GEN-LAST:event_rdAlterarActionPerformed
+
+    private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_buttonSairActionPerformed
+
+    private void txtUsuarioPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioPesquisaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioPesquisaMouseClicked
+
+    private void jTableUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableUsuarioMouseClicked
+                                                    
+        try {
+            // TODO add your handling code here:
+            //Preenche os Campos de Texto correspondentes ao clicar numa linha do JTable
+            String codigousuario = "" + jTableUsuario.getValueAt(jTableUsuario.getSelectedRow(), 0);
+            conecta.conexao();
+            conecta.executaSQL("Select * from usuario where Cod_usuario='" + codigousuario + "'");
+            conecta.rs.first();
+            txtCodigo.setText(String.valueOf(conecta.rs.getInt("Cod_usuario")));
+            txtUsuario.setText(String.valueOf(conecta.rs.getString("Nome_usuario")));
+            txtLogin.setText(String.valueOf(conecta.rs.getString("login_usuario")));
+            txtSenha.setText(String.valueOf(conecta.rs.getString("Senha_usuario")));
+            txtLotacao.setText(String.valueOf(conecta.rs.getString("Setor_usuario")));
+            txtEmail.setText(String.valueOf(conecta.rs.getString("Email_usuario")));
+            txtTipo.setText(String.valueOf(conecta.rs.getString("Tipo_usuario")));
+            
+        
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao capturar dados da linha selecionada [" + ex);
+        }
+
+              
+    // TODO add your handling code here:
+    }//GEN-LAST:event_jTableUsuarioMouseClicked
+             
     public void preencherTabela(String SQL) {
 
         ArrayList dados = new ArrayList();
@@ -564,16 +714,14 @@ public class JFrameUsuario extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(JFrameUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new JFrameUsuario().setVisible(true);
-               
             }
-            
         });
-       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -610,14 +758,14 @@ public class JFrameUsuario extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdExcluir;
     private javax.swing.JRadioButton rdNovo;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtCodigo1;
+    private javax.swing.JTextField txtCodigoPesquisa;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JTextField txtLotacao;
     private javax.swing.JTextField txtSenha;
     private javax.swing.JTextField txtTipo;
     private javax.swing.JTextField txtUsuario;
-    private javax.swing.JTextField txtUsuario1;
+    private javax.swing.JTextField txtUsuarioPesquisa;
     // End of variables declaration//GEN-END:variables
 
  private void desabilitaRdButtons() {
@@ -673,6 +821,4 @@ public class JFrameUsuario extends javax.swing.JFrame {
         rdExcluir.setSelected(false);
         rdAlterar.setSelected(false);
     }
-
-   
 }
