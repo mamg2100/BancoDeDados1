@@ -6,6 +6,7 @@
 
 package protocolo;
 
+import view.JFrameLogin;
 import view.JFramePrincipal;
 
 /**
@@ -20,9 +21,10 @@ public class Protocolo {
     public static void main(String[] args) {
         
       // TODO code application logic here        
-        JFramePrincipal principal = new JFramePrincipal();
-        principal.setVisible(true);  
-               
+        //JFramePrincipal principal = new JFramePrincipal();
+       // principal.setVisible(true);  
+          JFrameLogin frm = new JFrameLogin ();
+          frm.setVisible(true);
     }
     
     
